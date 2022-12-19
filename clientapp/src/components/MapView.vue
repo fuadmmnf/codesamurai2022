@@ -1,25 +1,81 @@
 <template>
-    <l-map style="height: 300px" :zoom="zoom" :center="center">
-      <ProjectDetailsDialog/>
+  <l-map style="height: 300px" :zoom="zoom" :center="center">
+    <ProjectDetailsDialog/>
 
-      <l-tile-layer :url="url"></l-tile-layer>
+    <l-tile-layer :url="url"></l-tile-layer>
 
-      <div v-for="projectInfo in projectsInfo" :key="projectInfo.id">
-        <div v-for="(coord,idx) in parseCoords(projectInfo)" :key="`${projectInfo.id}_${idx}`">
-          <l-marker :lat-lng="coord" @click="showDescription(projectInfo)"></l-marker>
-        </div>
-
+    <div v-for="projectInfo in projectsInfo" :key="projectInfo.id">
+      <div v-for="(coord,idx) in parseCoords(projectInfo)" :key="`${projectInfo.id}_${idx}`">
+        <l-marker :lat-lng="coord" @click="showDescription(projectInfo)"></l-marker>
       </div>
-<!--      <l-control-zoom position="bottomright" />-->
 
-    </l-map>
+    </div>
+    <!--      <l-control-zoom position="bottomright" />-->
+    <l-control>
+
+      <q-btn label="Filter Projects" icon="filter_alt" color="primary" @click="showFilterDialog=true"/>
+      <q-dialog v-model="showFilterDialog" :position="'right'">
+        <q-card>
+
+          <q-card-section>
+            <div class="text-subtitle1  text-center">Filter by Category/ Daterange</div>
+            <q-separator inset/>
+
+          </q-card-section>
+
+          <q-card-section class="items-center no-wrap">
+            <div class="q-mb-md">
+              <q-select outlined v-model="filter.category" :options="projectCategories"
+                        label="Select Project Category"/>
+
+            </div>
+
+            <q-input filled v-model="filter.startDate" mask="date" :rules="['date']" label="Project Staring Date">
+              <template v-slot:append>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                    <q-date v-model="filter.startDate">
+                      <div class="row items-center justify-end">
+                        <q-btn v-close-popup label="Close" color="primary" flat/>
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+
+
+            <q-input filled v-model="filter.endDate" mask="date" :rules="['date']" label="Project Ending Date">
+              <template v-slot:append>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                    <q-date v-model="filter.endDate">
+                      <div class="row items-center justify-end">
+                        <q-btn v-close-popup label="Close" color="primary" flat/>
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+            <div class="row justify-center">
+              <q-btn outline color="primary" label="Apply" @click="applyFiltering"/>
+              <q-btn outline color="danger" label="Reset" @click="resetFiltering"/>
+            </div>
+
+          </q-card-section>
+        </q-card>
+      </q-dialog>
+    </l-control>
+  </l-map>
 
 
 </template>
 
 <script>
 import projectsJson from 'src/assets/projects'
-import {LMap, LTileLayer, LMarker} from "vue2-leaflet";
+import {LMap, LTileLayer, LMarker, LControl} from "vue2-leaflet";
+import {date} from 'quasar'
 
 import "leaflet/dist/leaflet.css";
 import {Icon} from "leaflet";
@@ -39,9 +95,16 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    LControl
   },
   data() {
     return {
+      showFilterDialog: false,
+      filter: {
+        category: null,
+        startDate: null,
+        endDate: null,
+      },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         "",
@@ -61,8 +124,32 @@ export default {
       }
       return coords
     },
-    showDescription(projectInfo){
+    showDescription(projectInfo) {
       this.$root.$emit('marker-click', projectInfo)
+    },
+    resetFiltering() {
+      this.filter = {
+        category: null,
+        startDate: null,
+        endDate: null,
+      }
+
+    },
+    applyFiltering() {
+      if (this.filter.category !== null) {
+        this.projectsInfo = this.projectsInfo.filter(project => project.category === this.filter.category)
+      }
+
+      if (this.filter.startDate !== null) {
+        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(new Date(project.project_start_time), this.filter.startDate, 'days') > 0)
+      }
+      if (this.filter.endDate !== null) {
+        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(this.filter.endDate, new Date(project.project_completion_time), 'days') > 0)
+      }
+
+      if (this.filter.category === null && this.filter.startDate === null && this.filter.endDate === null) {
+        this.projectsInfo = projectsJson()
+      }
     }
   },
   computed: {
@@ -78,6 +165,9 @@ export default {
         }
       }
       return coords
+    },
+    projectCategories() {
+      return [...new Set(this.projectsInfo.map(project => project.category))]
     }
   }
 };
