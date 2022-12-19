@@ -6,14 +6,18 @@
   "author": "fuadmmnf <bsse0920@iit.du.ac.bd>",
   "private": true,
   "scripts": {
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider &&  quasar dev",
+    "build": "quasar build",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "quasar": "^1.0.0"
+    "leaflet": "^1.9.3",
+    "quasar": "^1.0.0",
+    "vue2-leaflet": "^2.7.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
