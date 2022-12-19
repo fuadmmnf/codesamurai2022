@@ -1,6 +1,7 @@
 export default function () {
   return [
     {
+      id:1,
       project_name:
         "JICA Support Program 3 for Strengthening Mathematics and Science Education in Primary Education Project",
       category: "Education",
@@ -16,6 +17,7 @@ export default function () {
         "(23.729211164246585, 90.40874895549243),(23.801862310944188, 90.35700996898726)",
     },
     {
+      id:2,
       project_name: "Project for Capacity Building of Nursing Services Phase 2",
       category: "Health",
       affiliated_agency:
@@ -29,6 +31,7 @@ export default function () {
         "(23.768773179764562, 90.37269632665758),(23.733211657612223, 90.40993638432778)",
     },
     {
+      id:3,
       project_name:
         "The Project for Strengthening Health Systems through Organizing Communities",
       category: "Health",
@@ -42,6 +45,7 @@ export default function () {
       location_coordinates: "(23.728881264793493, 90.40888399782175)",
     },
     {
+      id:4,
       project_name: "Safe Motherhood Promotion Project",
       category: "Health",
       affiliated_agency:
@@ -56,6 +60,7 @@ export default function () {
         "(23.728881264793493, 90.40888399782175),(23.75363622259384, 90.39417243785537),(23.780215725696586, 90.40895332665768)",
     },
     {
+      id:5,
       project_name: "Safe Motherhood Promotion Project Phase 2",
       category: "Health",
       affiliated_agency:
@@ -70,6 +75,7 @@ export default function () {
         "(23.728881264793493, 90.40888399782175),(23.75363622259384, 90.39417243785537),(23.780215725696586, 90.40895332665768)",
     },
     {
+      id:6,
       project_name: "National Integrity Strategy Support Project Phase 2",
       category: "Governance",
       affiliated_agency: "Cabinet Division of the Government of Bangladesh",
@@ -82,6 +88,7 @@ export default function () {
       location_coordinates: "(23.728407931193587, 90.40787482665709)",
     },
     {
+      id:7,
       project_name:
         "Project for Capacity Development of City Corporations (C4C)",
       category: "Governance",
@@ -96,6 +103,7 @@ export default function () {
       location_coordinates: "(23.7284766533655, 90.40910864263893)",
     },
     {
+      id:8,
       project_name: "Strengthening Paurashava Governance Project (SPGP)",
       category: "Governance",
       affiliated_agency:
@@ -109,6 +117,7 @@ export default function () {
       location_coordinates: "(23.7284766533655, 90.40910864263893)",
     },
     {
+      id:9,
       project_name:
         "Strengthening Public Investment Management System (SPIMS) Project Phase 2",
       category: "Governance",
@@ -123,6 +132,7 @@ export default function () {
       location_coordinates: "(23.7708680271343, 90.38098892695923)",
     },
     {
+      id:10,
       project_name: "Upazila Integrated Capacity Development Project (UICDP)",
       category: "Governance",
       affiliated_agency:
@@ -136,6 +146,7 @@ export default function () {
       location_coordinates: "(23.7284766533655, 90.40910864263893)",
     },
     {
+      id:11,
       project_name:
         "The Integrated Energy and Power Master Plan Project in Bangladesh",
       category: "Energy and Mining",
@@ -150,6 +161,7 @@ export default function () {
       location_coordinates: "(23.728917093659554, 90.40956388277749)",
     },
     {
+      id:12,
       project_name:
         "The Project for Gas Network System Digitalization and Improvement of Operational Efficiency in Gas Sector in Bangladesh",
       category: "Energy and Mining",

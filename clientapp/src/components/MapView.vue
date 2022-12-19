@@ -1,19 +1,29 @@
 <template>
-  <l-map style="height: 300px" :zoom="zoom" :center="center">
-    <l-tile-layer :url="url"></l-tile-layer>
-    <div v-for="(projectOffice, idx) in projectOffices" :key="idx">
-      <l-marker :lat-lng="projectOffice"></l-marker>
-    </div>
-    <l-control-zoom position="bottomright"  ></l-control-zoom>
-  </l-map>
+    <l-map style="height: 300px" :zoom="zoom" :center="center">
+      <ProjectDetailsDialog/>
+
+      <l-tile-layer :url="url"></l-tile-layer>
+
+      <div v-for="projectInfo in projectsInfo" :key="projectInfo.id">
+        <div v-for="(coord,idx) in parseCoords(projectInfo)" :key="`${projectInfo.id}_${idx}`">
+          <l-marker :lat-lng="coord" @click="showDescription(projectInfo)"></l-marker>
+        </div>
+
+      </div>
+<!--      <l-control-zoom position="bottomright" />-->
+
+    </l-map>
+
+
 </template>
 
 <script>
 import projectsJson from 'src/assets/projects'
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import {LMap, LTileLayer, LMarker} from "vue2-leaflet";
 
 import "leaflet/dist/leaflet.css";
-import { Icon } from "leaflet";
+import {Icon} from "leaflet";
+import ProjectDetailsDialog from "components/ProjectDetailsDialog";
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -25,9 +35,10 @@ Icon.Default.mergeOptions({
 export default {
   name: "MapView",
   components: {
+    ProjectDetailsDialog,
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
   },
   data() {
     return {
@@ -40,16 +51,30 @@ export default {
       markerLatLng: [23.732590, 90.395632]
     };
   },
+  methods: {
+    parseCoords(project) {
+      let coords = []
+      const points = project.location_coordinates.replace(/[()]/g, '').replace(/\s/g, '').split(",")
+      for (let i = 0; i < points.length; i = i + 2) {
+        coords.push([parseFloat(points[i]), parseFloat(points[i + 1])])
+
+      }
+      return coords
+    },
+    showDescription(projectInfo){
+      this.$root.$emit('marker-click', projectInfo)
+    }
+  },
   computed: {
     // a computed getter
     projectOffices() {
       // `this` points to the component instance
       let coords = []
-      for(const project of  this.projectsInfo){
-        const points = project.location_coordinates.replace(/[()]/g, '').replace(/\s/g,'').split(",")
+      for (const project of this.projectsInfo) {
+        const points = project.location_coordinates.replace(/[()]/g, '').replace(/\s/g, '').split(",")
         console.log(points);
-        for (let i=0; i<points.length; i=i+2){
-          coords.push([parseFloat(points[i]), parseFloat(points[i+1])])
+        for (let i = 0; i < points.length; i = i + 2) {
+          coords.push([parseFloat(points[i]), parseFloat(points[i + 1])])
         }
       }
       return coords
