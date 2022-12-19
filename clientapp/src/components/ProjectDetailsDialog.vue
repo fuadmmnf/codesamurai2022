@@ -18,7 +18,7 @@
 
         <q-card-section>
           <div v-if="projectDetail !== null">
-            <div class="row q-pa-md ">
+            <div class="row q-pa-md items-center">
               <div class="col">
                 <table class="text-left">
                   <caption class="text-h6">Project Details</caption>
@@ -68,7 +68,27 @@
                 </table>
               </div>
               <div class="col">
-                <h6 class="text-center">form</h6>
+                <h6 class="text-center">Report Complain/ Issue</h6>
+                <q-form
+                  @submit="submitComplain"
+                  class="q-gutter-md"
+                >
+                  <q-input
+                    filled
+                    v-model="complain"
+                    label="Your Complain/Issue"
+                    hint="Please report the problem."
+                    lazy-rules
+                    :rules="['Please type something']"
+                    type="textarea"
+                  />
+
+
+                  <div class="row justify-center">
+                    <q-btn label="Submit" type="submit" color="primary"/>
+                  </div>
+                </q-form>
+
               </div>
 
             </div>
@@ -100,18 +120,32 @@ export default {
   data() {
     return {
       dialog: false,
-      projectDetail: null
+      projectDetail: null,
+      complain: '',
     }
   },
   computed: {
     timeGonePercentage() {
       const totalDays = date.getDateDiff(new Date(this.projectDetail.project_completion_time), new Date(this.projectDetail.project_start_time), 'days')
       const goneDays = date.getDateDiff(new Date(), new Date(this.projectDetail.project_start_time), 'days')
-      console.log(totalDays, goneDays)
       if (goneDays < 0) return 0
       if (goneDays > totalDays) return 1
-      return (goneDays / totalDays.toFixed(2)).toFixed(2)
+      return parseFloat((goneDays / parseFloat(totalDays.toFixed(2))).toFixed(2))
     }
+  },
+  methods: {
+    submitComplain() {
+      this.$q.notify({
+        color: 'green-4',
+        textColor: 'white',
+        icon: 'cloud_done',
+        message: 'Submitted Successfully',
+        position: 'top-right',
+      })
+      this.complain = ''
+    }
+
+
   }
 }
 </script>
