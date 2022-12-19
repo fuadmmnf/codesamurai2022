@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider &&  quasar dev",
-    "build": "quasar build",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && quasar build",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
