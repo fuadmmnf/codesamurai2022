@@ -14,14 +14,17 @@
     <l-control>
 
       <q-btn label="Filter Projects" icon="filter_alt" color="primary" @click="showFilterDialog=true"/>
-      <q-dialog v-model="showFilterDialog" :position="'right'">
+      <q-dialog v-model="showFilterDialog" :position="'right'" persistent>
         <q-card>
-
-          <q-card-section>
+          <q-bar>
             <div class="text-subtitle1  text-center">Filter by Category/ Daterange</div>
-            <q-separator inset/>
 
-          </q-card-section>
+            <q-space />
+
+            <q-btn dense flat icon="close" v-close-popup>
+              <q-tooltip>Close</q-tooltip>
+            </q-btn>
+          </q-bar>
 
           <q-card-section class="items-center no-wrap">
             <div class="q-mb-md">
@@ -60,7 +63,7 @@
             </q-input>
             <div class="row justify-center">
               <q-btn outline color="primary" label="Apply" @click="applyFiltering"/>
-              <q-btn outline color="danger" label="Reset" @click="resetFiltering"/>
+              <q-btn outline color="danger" label="Clear" @click="resetFiltering"/>
             </div>
 
           </q-card-section>
@@ -136,19 +139,16 @@ export default {
 
     },
     applyFiltering() {
+      this.projectsInfo = projectsJson()
       if (this.filter.category !== null) {
         this.projectsInfo = this.projectsInfo.filter(project => project.category === this.filter.category)
       }
 
       if (this.filter.startDate !== null) {
-        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(new Date(project.project_start_time), this.filter.startDate, 'days') > 0)
+        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(new Date(project.project_start_time), this.filter.startDate, 'days') >= 0)
       }
       if (this.filter.endDate !== null) {
-        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(this.filter.endDate, new Date(project.project_completion_time), 'days') > 0)
-      }
-
-      if (this.filter.category === null && this.filter.startDate === null && this.filter.endDate === null) {
-        this.projectsInfo = projectsJson()
+        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(this.filter.endDate, new Date(project.project_completion_time), 'days') >= 0)
       }
     }
   },
@@ -167,7 +167,7 @@ export default {
       return coords
     },
     projectCategories() {
-      return [...new Set(this.projectsInfo.map(project => project.category))]
+      return [...new Set(projectsJson().map(project => project.category))]
     }
   }
 };
