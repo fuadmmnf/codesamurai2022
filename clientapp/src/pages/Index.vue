@@ -1,6 +1,6 @@
 <template>
-  <q-page class="flex flex-center">
-    <MapView/>
+  <q-page>
+    <MapView style="min-height: 94.5vh"/>
   </q-page>
 </template>
 

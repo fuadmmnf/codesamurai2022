@@ -1,15 +1,17 @@
 <template>
   <l-map style="height: 300px" :zoom="zoom" :center="center">
-    <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+    <l-tile-layer :url="url"></l-tile-layer>
     <div v-for="(projectOffice, idx) in projectOffices" :key="idx">
       <l-marker :lat-lng="projectOffice"></l-marker>
     </div>
+    <l-control-zoom position="bottomright"  ></l-control-zoom>
   </l-map>
 </template>
 
 <script>
 import projectsJson from 'src/assets/projects'
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 
