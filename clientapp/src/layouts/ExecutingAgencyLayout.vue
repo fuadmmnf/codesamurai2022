@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="bg-cyan-6 text-black">
       <q-toolbar>
         <q-btn
           flat
@@ -30,7 +30,7 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          Samurai Planners
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
@@ -51,51 +51,33 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Dashboard',
+    caption: 'Executing agency dashboard',
+    icon: '🏣',
+    link: '/#/exec'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    title: 'Projects',
+    caption: 'List of all projects',
+    icon: '⚒',
+    link: '/#/exec/projects'
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    title: 'Proposals (DPPs)',
+    caption: 'List of all proposals',
+    icon: '📁',
+    link: '/#/exec/proposals'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    title: 'Add Proposals (DPPs)',
+    caption: 'Add new project',
+    icon: '➕',
+    link: '/#/exec/proposals/add'
   },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
 ]
 
 export default {
-  name: 'GovtLayout',
+  name: 'ExecutingLayout',
   components: {
     EssentialLink
   },

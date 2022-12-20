@@ -1,12 +1,12 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">🏣 Govt Agency Dashboard</div>
+      <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">🏣 Executing Agency Dashboard</div>
       <div class="row">
         <div class="col-lg-4 col-md-6">
           <q-card
             class="my-card shadow-15 myMaxWidth myPointer" style="margin-top: 1%;margin-bottom: 2%;"
-            @click="$router.push('/govt/projects')"
+            @click="$router.push('/exec/projects')"
           >
             <q-card-section>
               <div class="text-h6">⚒ Projects</div>
@@ -22,7 +22,7 @@
         <div class="col-lg-4 col-md-6">
           <q-card
             class="my-card shadow-15 myMaxWidth myPointer" style="margin-top: 1%;margin-bottom: 2%;"
-            @click="$router.push('/govt/proposals')"
+            @click="$router.push('/exec/proposals')"
           >
             <q-card-section>
               <div class="text-h6">📁 Proposals (DPPs)</div>
@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      </div>
+    </div>
 
   </q-page>
 </template>

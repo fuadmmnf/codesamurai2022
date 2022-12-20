@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "core-js": "^3.6.5",
     "leaflet": "^1.9.3",
     "quasar": "^1.0.0",
@@ -21,12 +21,12 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
+    "@quasar/app": "^2.0.0",
     "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
     "eslint-webpack-plugin": "^2.0.0",
-    "eslint-config-prettier": "^8.1.0",
-    "prettier": "^2.5.1",
-    "@quasar/app": "^2.0.0"
+    "prettier": "^2.5.1"
   },
   "browserslist": [
     "last 10 Chrome versions",

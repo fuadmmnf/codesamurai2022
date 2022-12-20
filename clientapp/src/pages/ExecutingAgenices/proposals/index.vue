@@ -14,6 +14,8 @@
             <q-icon name="search" />
           </template>
         </q-input>
+        <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="+ Add Proposals"
+               @click="$router.push('/exec/proposals/add')"/>
       </template>
       <template v-slot:body="props">
         <q-tr :props="props">
@@ -34,7 +36,7 @@
           </q-td>
           <q-td key="Timespan" :props="props" style="align-items: end">
             <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Details"
-                   @click="$router.push('/govt/proposals/detail')"/>
+                   @click="$router.push('/exec/proposals/detail')"/>
           </q-td>
         </q-tr>
       </template>
@@ -46,7 +48,7 @@
 import { ref } from 'vue'
 
 export default {
-  name: 'GovtProposalsIndex',
+  name: 'ExecProposalsIndex',
   data () {
     return {
       filter: ref(''),
@@ -92,6 +94,6 @@ export default {
   .q-table__top,
   thead tr:first-child th
     /* bg color is important for th; just specify one */
-    background-color: #B3CDF5
+    background-color: #52DBCA
 
 </style>

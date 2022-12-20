@@ -1,6 +1,6 @@
 <template>
   <q-page-container style="padding-left: 65px;padding-right: 65px;">
-    <div class="text-h6 flex flex-center" style="margin-bottom: 15px;">⚒ <b>Add New Project</b></div>
+    <div class="text-h6 flex flex-center" style="margin-bottom: 15px;">⚒ <b>Update Project</b></div>
     <div class="q-pa-md" style="max-width: 100%">
 
       <q-form
@@ -10,14 +10,14 @@
       >
         <div class="row">
           <div class="col-lg-8 col-md-8">
-              <q-input
-                filled
-                v-model="name"
-                label="Project Name"
-                hint="Enter project name"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please enter something']"
-              />
+            <q-input
+              filled
+              v-model="name"
+              label="Project Name"
+              hint="Enter project name"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Please enter something']"
+            />
           </div>
           <div class="col-lg-4 col-md-4" style="padding-left: 10px;">
             <q-input
@@ -68,7 +68,7 @@
               :rules="[ val => val && val.length > 0 || 'Please enter something']"
             />
           </div>
-          <div class="col-lg-6 col-md-6" style="padding-left: 10px;">
+          <div class="col-lg-6 col-md-6 q-pl-lg" style="padding-left: 10px;">
             <q-input
               filled
               v-model="Timespan"
@@ -81,18 +81,8 @@
           </div>
         </div>
 
-
-        <q-input
-          filled
-          v-model="Goal"
-          label="Project Goal"
-          hint="Enter project goal"
-          lazy-rules
-          :rules="[ val => val && val.length > 0 || 'Please enter something']"
-        />
         <div class="flex flex-center">
-          <q-btn label="Submit" type="submit" color="primary"/>
-          <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+          <q-btn label="Save Changes" type="submit" color="primary"/>
         </div>
       </q-form>
 
@@ -116,7 +106,7 @@ export default {
   // Start_date - Date of project start
   // Completion - Percentage of project completed
   // Actual_cost - Actual cost of the project to date
-  name: "AddProjects",
+  name: "Update Project",
   data () {
     return {
       name: '',
