@@ -122,7 +122,6 @@ def get_component_detail_or_delete_by_id(request, project_id, component_id):
     Component.objects.get(component_id__exact=component_id).delete()
     return JsonResponse({'data': 'successful'}, status=200)
 
-
 @csrf_exempt
 def login(request):
     if request.method == 'POST':
