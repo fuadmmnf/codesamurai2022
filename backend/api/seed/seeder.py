@@ -46,28 +46,15 @@ for i, project in projects.iterrows():
         actual_cost=project['actual_cost'],
     ).save()
 
-components = pd.read_csv(open('api/seed/data/components.csv'))
-Component.objects.all().delete()
-for i, component in components.iterrows():
-    Component(
-        component_id=component['component_id'],
-        project_id=Project.objects.get(project_id__exact=component['project_id']),
-        exec=Agency.objects.get(code__exact=component['execution_agency']),
-        component_type=component['component_type'],
-        depends_on=None if len(component['depends_on']) < 1 else Component.objects.get(
-            component_id__exact=component['depends_on']),
-        budget_ratio=component['budget_ratio'],
-    ).save()
 
 proposals = pd.read_csv(open('api/seed/data/proposals.csv'))
 for i, proposal in proposals.iterrows():
     Project(
         project_id=proposal['project_id'],
         exec=Agency.objects.get(code__exact=proposal['exec']),
-        project_name=proposal['project_name'],
+        project_name=proposal['name'],
         location=proposal['location'],
         proposal_date=datetime.strptime(proposal['proposal_date'], "%Y-%m-%d"),
-        total_budget=proposal['total_budget'],
         latitude=proposal['latitude'],
         longitude=proposal['longitude'],
         cost=proposal['cost'],
@@ -76,11 +63,26 @@ for i, proposal in proposals.iterrows():
         is_accepted=False,
     ).save()
 
+components = pd.read_csv(open('api/seed/data/components.csv'))
+Component.objects.all().delete()
+for i, component in components.sort_values(by='depends_on', ascending=False)[::-1].iterrows():
+    Component(
+        component_id=component['component_id'],
+        project_id=Project.objects.get(project_id__exact=component['project_id']),
+        executing_agency=Agency.objects.get(code__exact=component['ececuting_agency']),
+        component_type=component['component_type'],
+        depends_on=None if pd.isna(component['depends_on']) else Component.objects.get(
+            component_id__exact=component['depends_on']),
+        budget_ratio=component['budget ratio'],
+    ).save()
+
+
 constraints = pd.read_csv(open('api/seed/data/constraints.csv'))
 Constraint.objects.all().delete()
 for i, constraint in constraints.iterrows():
     Constraint(
-        constraint_tyoe=constraint['constraint_type'],
+        constraint_type=constraint['constraint_type'],
         code=constraint['code'],
         max_limit=constraint['max_limit'],
     ).save()
+
