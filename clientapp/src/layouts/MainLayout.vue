@@ -11,7 +11,7 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="myTitle" @click="$router.push('/')">
           IIT Heckers
         </q-toolbar-title>
 
@@ -77,3 +77,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.myTitle{
+  cursor: pointer;
+}
+</style>

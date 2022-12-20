@@ -11,7 +11,8 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/client/projects', component: () => import('pages/ClientProjects.vue') },
-      { path: '/client/proposals/detail', component: () => import('pages/ClientProjectDetails.vue') },
+      { path: '/client/projects/detail', component: () => import('pages/ClientProjectDetails.vue') },
+      { path: '/gantt', component: () => import('components/gantt.vue') },
     ]
   },
   {
