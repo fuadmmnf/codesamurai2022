@@ -47,7 +47,7 @@
             <q-input
               class="q-input-padding"
               filled
-              v-model="name"
+              v-model="Longitude"
               label="Longitude"
               step="0.01"
               type="number"
@@ -141,10 +141,10 @@ export default {
         project_name: this.name,
         location: this.Location,
         start_date: new Date(this.Start_date).toISOString().split('T')[0],
-        latitude: 23.61931959,
-        longitude: 90.50365683,
-        cost: 4.0,
-        timespan: 3.0,
+        latitude: this.Latitude,
+        longitude: this.Longitude,
+        cost: this.Cost,
+        timespan: this.Timespan,
         feedback: "",
         rating: null,
         goal: this.Goal,

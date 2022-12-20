@@ -5,7 +5,6 @@
 
       <q-form
         @submit="onSubmit"
-        @reset="onReset"
         class="q-gutter-md"
       >
         <div class="row">
@@ -36,6 +35,7 @@
             <q-input
               filled
               v-model="Latitude"
+              step="0.01"
               label="Project Latitude"
               hint="Enter project latitude"
               type="number"
@@ -48,6 +48,7 @@
               class="q-input-padding"
               filled
               v-model="Longitude"
+              step="0.01"
               label="Longitude"
               type="number"
               hint="Enter project Longitude"
@@ -57,10 +58,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-md-4">
+          <div class="col-lg-6 col-md-6">
             <q-input
               filled
               v-model="Cost"
+              step="0.01"
               label="Project Cost"
               hint="Enter project cost"
               type="number"
@@ -68,23 +70,14 @@
               :rules="[ val => val && val.length > 0 || 'Please enter something']"
             />
           </div>
-          <div class="col-lg-4 col-md-4" style="padding-left: 10px;">
+          <div class="col-lg-6 col-md-6" style="padding-left: 10px;">
             <q-input
               filled
               v-model="Timespan"
+              step="0.01"
               label="Project Timespan"
               hint="Enter project timespan"
               type="number"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Please enter something']"
-            />
-          </div>
-          <div class="col-lg-4 col-md-4" style="padding-left: 10px;">
-            <q-input
-              filled
-              v-model="Start_date"
-              hint="Start Date"
-              type="Date"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Please enter something']"
             />
@@ -138,8 +131,31 @@ export default {
     })
   },
   methods: {
-    onSubmit(){},
-    onReset(){},
+    onSubmit(){
+      let temp={
+        project_id: this.project.project_id,
+        exec: "MOEDU",
+        project_name: this.name,
+        location: this.Location,
+        start_date: this.project.start_date,
+        latitude: this.Latitude,
+        longitude: this.Longitude,
+        cost: this.Cost,
+        timespan: this.Timespan,
+        feedback: this.project.feedback,
+        rating: this.project.rating,
+        goal: this.project.goal,
+        completion: this.project.completion,
+        actual_cost: this.project.actual_cost,
+        is_accepted: true,
+        is_deleted: false
+      }
+      api.put('projects',temp).then((response)=>{
+        if(response.status === 200){
+          this.$router.push('/govt/projects')
+        }
+      })
+    },
   }
 }
 </script>
