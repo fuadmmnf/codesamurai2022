@@ -37,6 +37,13 @@
           :key="link.title"
           v-bind="link"
         />
+        <div align="center" style="margin-top: 15px;">
+          <q-btn
+            color="primary"
+            label="Logout"
+            @click="onLogout"
+          />
+        </div>
       </q-list>
     </q-drawer>
 
@@ -48,6 +55,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
+import {mapGetters, mapMutations} from "vuex";
 
 const linksData = [
   {
@@ -85,6 +93,21 @@ export default {
     return {
       leftDrawerOpen: false,
       essentialLinks: linksData
+    }
+  },
+  computed: {
+    ...mapGetters("auth", ["getUser"]),
+  },
+  mounted() {
+    if(this.getUser.role.code === 'APP' || this.getUser.role.code === 'EXEC'){
+      this.$router.push('/login');
+    }
+  },
+  methods:{
+    ...mapMutations('auth', ['RESET_USER']),
+    onLogout(){
+      this.RESET_USER()
+      this.$router.push('/login')
     }
   }
 }

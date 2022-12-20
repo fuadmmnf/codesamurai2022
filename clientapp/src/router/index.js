@@ -14,7 +14,7 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
+export default function ( { store, ssrContext }) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
@@ -25,6 +25,27 @@ export default function (/* { store, ssrContext } */) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
   })
+  store.commit('auth/init')
 
+  Router.beforeEach((to, from, next) => {
+    // const currentUser = AUTH.currentUser
+    const currentUser = store.state.auth.user
+    console.log(currentUser)
+    if (currentUser === null && to.name !=='login') {
+      next('/login')
+    } else if(currentUser !== null && to.name ==='login') {
+      console.log('here')
+      if(currentUser.role.code === 'APP'){
+        next('/')
+      } else if(currentUser.role.code === 'EXEC'){
+        next('/exec')
+      } else {
+        next('/govt')
+      }
+    }
+    else {
+      next()
+    }
+  })
   return Router
 }

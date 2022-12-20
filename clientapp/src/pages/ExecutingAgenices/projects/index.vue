@@ -47,6 +47,7 @@
 <script>
 import {ref} from 'vue'
 import {api} from "boot/axios";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'ExecProjectIndex',
@@ -68,9 +69,13 @@ export default {
       rows: null
     }
   },
+  computed: {
+    ...mapGetters("auth", ["getUser"]),
+  },
   mounted(){
     api.get('projects').then((response)=>{
-      this.rows = response.data.data.filter(x => x.exec_id == '34')
+      // console.log(response)filter(x => x.exec === this.getUser.role.code)
+      this.rows = response.data.data
     })
   },
   methods: {},

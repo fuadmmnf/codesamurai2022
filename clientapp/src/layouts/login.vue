@@ -16,7 +16,7 @@
                 width="100%"
               >
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-0 col-xs-0 flex flex-center ">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 flex flex-center ">
               <h5 class="text-dark text-center"><b>Samurai Planner Log In</b></h5>
               <div>
                 <form @submit.prevent="onLoginSubmit">
@@ -27,9 +27,9 @@
                       icon-color="light"
                     >
                       <q-input
-                        v-model="email"
-                        placeholder="Enter your email"
-                        type="email"
+                        v-model="username"
+                        placeholder="Enter user name"
+                        type="text"
                       >
                         <template v-slot:before>
                           <q-icon name="email"/>
@@ -52,19 +52,18 @@
                       </q-input>
                     </q-field>
                   </div>
-                  <div align="center">
+                  <div align="center" style="margin-bottom: 15px;">
                     <q-btn
-                      :disable="otp_clicked_send === true"
                       color="primary"
                       label="Login"
                       type="submit"
                     />
                   </div>
                 </form>
-                <div class="text-center" style="font-size: 12px; padding: 15px; margin-bottom: 10px;">
-                  If you don't have an account, Please
-                  <a class="textColor" @click="$router.push({ path: '/register'})">Sign Up</a>
-                </div>
+<!--                <div class="text-center" style="font-size: 12px; padding: 15px; margin-bottom: 10px;">-->
+<!--                  If you don't have an account, Please-->
+<!--                  <a class="textColor" @click="$router.push({ path: '/register'})">Sign Up</a>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
@@ -77,6 +76,7 @@
 <script>
 
 import {mapMutations} from 'vuex'
+import {api} from "boot/axios";
 export default {
   name: "login",
   components: {
@@ -84,14 +84,21 @@ export default {
   },
   data() {
     return {
-      email: '',
+      username: '',
       password: '',
     }
   },
   methods: {
     ...mapMutations('auth', ['SET_USER']),
     async onLoginSubmit() {
-      console.log("auth submitted");
+      let temp = {
+        username: this.username,
+        password: this.password
+      }
+      api.post('login',temp).then((response)=>{
+        this.SET_USER(response.data.data)
+        this.$router.push('/')
+      })
     },
   },
 }
