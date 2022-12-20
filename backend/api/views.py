@@ -130,7 +130,6 @@ def login(request):
         user = User.objects.prefetch_related('user_type').filter(username__exact=body.get('username')).get(
             password__exact=body.get('password').encode('utf-8'))
         if user:
-
             return JsonResponse({'data': {'user': model_to_dict(user), 'role': model_to_dict(user.user_type)}})
         else:
             return JsonResponse({'data': 'unauthorized'}, status=401)
