@@ -1,0 +1,6 @@
+code,committee,description
+SYSADMIN,system admin,System admin user group
+ECNEC,Executive Committee of the National Economic Council,DPP approval committee for projects costing over BDT 50 crores
+MOP,Ministry of Planning,DPP approval committee for projects costing up to BDT 50 crores
+EXEC,Executing Agency,Executing agency user group
+APP,Application Users,Citizen application user group

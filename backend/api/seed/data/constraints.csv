@@ -1,0 +1,8 @@
+code,max_limit,constraint_type
+MOEDU,25,executing_agency_limit
+LGD,75,executing_agency_limit
+Daudpur,8,location_limit
+Kanchan,5,location_limit
+Pabna,1,location_limit
+PWD,500,yearly_funding
+LGD,1000,yearly_funding

@@ -1,0 +1,13 @@
+code,name,type,description
+LGED,Local Government Engineering Department,EXEC,"Executing agency responsible for implementing infrastructure projects at the local level, including roads, bridges, and water supply systems"
+RDA,Rural Development Academy,EXEC,"Executing agency responsible for implementing rural development projects, including agricultural extension and income generation programs"
+BREB,Bangladesh Rural Electrification Board,EXEC,"Executing agency responsible for implementing rural electrification projects in Bangladesh"
+BWDB,Bangladesh Water Development Board,EXEC,"Executing agency responsible for implementing water development projects, including water treatment plants and irrigation systems"
+BPDB,Bangladesh Power Development Board,EXEC,"Executing agency responsible for implementing power generation, transmission, and distribution projects in Bangladesh"
+BTRC,Bangladesh Telecommunication Regulatory Commission,EXEC,"Executing agency responsible for implementing telecommunications projects in Bangladesh, including the expansion of mobile and internet networks"
+BBA,Bangladesh Bridge Authority,EXEC,"Executing agency responsible for implementing bridge construction and maintenance projects in Bangladesh"
+PWD,Bangladesh Public Works Department,EXEC,"Executing agency responsible for implementing infrastructure projects at the national level, including roads, bridges, and buildings"
+LGD,Local Government Division,EXEC,"Executing agency responsible for implementing local government projects and programs, including the development of community facilities and services"
+MOEDU,Ministry of Education,EXEC,"Executing agency responsible for implementing education projects and programs, including the construction of new schools and classrooms"
+ECNEC,Executive Committee of the National Economic Council,APPROV,"Approving committee for projects costing over BDT 50 crores"
+MOP,Ministry of Planning,APPROV,"Approving committee for projects costing up to BDT 50 crores"
