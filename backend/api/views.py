@@ -17,7 +17,7 @@ def get_all_or_save_projects(request):
         body = json.loads(request.body)
         print(body.get('project_id'))
         transaction = Project.objects.update if request.method == 'PUT' else Project
-        transaction(
+        t=transaction(
             project_id=body.get('project_id'),
             exec=Agency.objects.get(code=body.get('exec')),
             project_name=body.get('project_name'),
@@ -35,6 +35,8 @@ def get_all_or_save_projects(request):
             actual_cost=body.get('actual_cost'),
             is_deleted=body.get('is_deleted', False)
         )
+        if request.method == 'POST':
+            t.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
@@ -69,7 +71,7 @@ def get_all_or_save_proposals(request):
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
         transaction = Project.objects.update if request.method == 'PUT' else Project
-        transaction(
+        t=transaction(
             project_id=body.get('project_id'),
             exec=Agency.objects.get(code__exact=body.get('exec')),
             project_name=body.get('name'),
@@ -84,6 +86,8 @@ def get_all_or_save_proposals(request):
             proposal_date=None if not body.get('proposal_date') else datetime.datetime.strptime(
                 body.get('proposal_date'), "%Y-%m-%d"),
         )
+        if request.method == 'POST':
+            t.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
@@ -104,7 +108,7 @@ def get_all_or_save_components(request, project_id):
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
         transaction = Component.objects.update if request.method == 'PUT' else Component
-        transaction(
+        t=transaction(
             component_id=body.get('component_id'),
             project_id=project,
             executing_agency=Agency.objects.get(code__exact=body.get('execution_agency')),
@@ -113,6 +117,8 @@ def get_all_or_save_components(request, project_id):
                 component_id__exact=body.get('depends_on')),
             budget_ratio=body.get('budget_ratio'),
         )
+        if request.method == 'POST':
+            t.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
