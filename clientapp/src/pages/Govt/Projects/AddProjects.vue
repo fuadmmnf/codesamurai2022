@@ -5,7 +5,6 @@
 
       <q-form
         @submit="onSubmit"
-        @reset="onReset"
         class="q-gutter-md"
       >
         <div class="row">
@@ -36,6 +35,7 @@
             <q-input
               filled
               v-model="Latitude"
+              step="0.01"
               label="Project Latitude"
               hint="Enter project latitude"
               type="number"
@@ -49,6 +49,7 @@
               filled
               v-model="name"
               label="Longitude"
+              step="0.01"
               type="number"
               hint="Enter project Longitude"
               lazy-rules
@@ -62,6 +63,7 @@
               filled
               v-model="Cost"
               label="Project Cost"
+              step="0.01"
               hint="Enter project cost"
               type="number"
               lazy-rules
@@ -73,6 +75,7 @@
               filled
               v-model="Timespan"
               label="Project Timespan"
+              step="0.01"
               hint="Enter project timespan"
               type="number"
               lazy-rules
@@ -102,7 +105,6 @@
         />
         <div class="flex flex-center">
           <q-btn label="Submit" type="submit" color="primary"/>
-          <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
         </div>
       </q-form>
 
@@ -112,39 +114,51 @@
 
 <script>
 import {ref} from "vue";
+import {api} from "boot/axios";
 
 export default {
-  // name    - TItle of the project
-  // Location - Location of the Project
-  // Latitude - Latitude of the project location
-  // Longitude - Longitude of the project location
-  // Exec - Executing Agency
-  // Cost - Projected Cost in crores
-  // Timespan - Timespan of the project in years
-  // Project_id - Unique id of the project
-  // Goal - Goals of the project
-  // Start_date - Date of project start
-  // Completion - Percentage of project completed
-  // Actual_cost - Actual cost of the project to date
   name: "AddProjects",
   data () {
     return {
       name: '',
       Location: '',
-      Latitude: null,
-      Longitude: null,
+      Latitude: 0.0,
+      Longitude: 0.0,
       Exec: '',
-      Cost: null,
-      Timespan: null,
+      Cost: 0.0,
+      Timespan: 0.0,
       Goal: '',
       Start_date: null,
-      Completion: 0,
-      Actual_cost: 0,
+      Completion: 0.0,
+      Actual_cost: 0.0,
     }
   },
   methods: {
-    onSubmit(){},
-    onReset(){},
+    onSubmit(){
+      let temp = {
+        project_id: "prop"+Math.random(),
+        exec: "MOEDU",
+        project_name: this.name,
+        location: this.Location,
+        start_date: new Date(this.Start_date).toISOString().split('T')[0],
+        latitude: 23.61931959,
+        longitude: 90.50365683,
+        cost: 4.0,
+        timespan: 3.0,
+        feedback: "",
+        rating: null,
+        goal: this.Goal,
+        completion: 0.0,
+        actual_cost: 0.0,
+        is_accepted: true,
+        is_deleted: false
+      }
+      api.post('projects',temp).then((response)=>{
+        if(response.status === 200){
+          this.$router.push('/govt/projects')
+        }
+      })
+    },
   }
 }
 </script>
