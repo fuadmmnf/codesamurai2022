@@ -85,3 +85,4 @@ for i, constraint in constraints.iterrows():
         code=constraint['code'],
         max_limit=constraint['max_limit'],
     ).save()
+
