@@ -1,0 +1,135 @@
+name,location,latitude,longitude,exec,cost,timespan,project_id,goal,start_date,completion,actual_cost
+"Uttar Khaishayir Government Primary School","Daudpur",23.61931959,90.50365683,MOEDU,4,3,proj9280,Extending education facilities to the neighborhood,2023-01-02,0.0,0.0
+"Uttar Khaishayir General Hospital","Daudpur",23.61931959,90.50365683,LGD,15,5,proj9681,Extending healthcare facilities to the neighborhood,2022-12-26,0.0,0.0
+"Fazlul Rahman Memorial General Hospital","Tarabo",23.71440803,90.51711917,LGD,25,5,proj3281,Extending healthcare facilities to the neighborhood,2022-03-10,15.62,3.9
+"Noapara Government Primary School","Tarabo",23.7293586,90.5089105,MOEDU,3,3,proj4207,Extending education facilities to the neighborhood,2023-01-17,0.0,0.0
+"Noapara General Hospital","Tarabo",23.7293586,90.5089105,LGD,15,5,proj9465,Extending healthcare facilities to the neighborhood,2021-11-04,22.52,3.38
+"Noapara Community Park","Tarabo",23.7293586,90.5089105,LGD,2,1,proj2754,Extending recreational facilities to the neighborhood,2023-01-09,0.0,0.0
+"No. 79 Barpa General Hospital","Tarabo",23.7469498,90.5417278,LGD,9,5,proj5283,Extending healthcare facilities to the neighborhood,2023-01-05,0.0,0.0
+"No. 74 Mashabo Government Primary School","Tarabo",23.7488533,90.553965,MOEDU,2,3,proj4588,Extending education facilities to the neighborhood,2023-01-03,0.0,0.0
+"No. 74 Mashabo Community Park","Tarabo",23.7488533,90.553965,LGD,2,1,proj3724,Extending recreational facilities to the neighborhood,2022-10-17,17.53,0.35
+"No. 56 Horgaon Community Park","Golakandail",23.7764662,90.5933341,LGD,2,1,proj4968,Extending recreational facilities to the neighborhood,2023-01-13,0.0,0.0
+"Paboi Government Primary School","Murapara",23.7812657,90.5321705,MOEDU,4,3,proj1080,Extending education facilities to the neighborhood,2023-01-12,0.0,0.0
+"Paboi General Hospital","Murapara",23.7812657,90.5321705,LGD,15,5,proj3173,Extending healthcare facilities to the neighborhood,2021-12-20,20.0,3.0
+"Paboi Community Park","Murapara",23.7812657,90.5321705,LGD,2,1,proj8114,Extending recreational facilities to the neighborhood,2022-12-10,2.74,0.05
+"Masumabad Government Primary School","Bhulta",23.799557,90.5448202,MOEDU,1,3,proj2485,Extending education facilities to the neighborhood,2022-10-08,6.67,0.07
+"No. 26 Naora Government Primary School","Kayetpara",23.8017158,90.492804,MOEDU,4,3,proj9736,Extending education facilities to the neighborhood,2022-12-30,0.0,0.0
+"Kushabo Government Primary School","Kanchan",23.8066314,90.5701778,MOEDU,3,3,proj1810,Extending education facilities to the neighborhood,2022-06-10,17.63,0.53
+"Kushabo Community Park","Kanchan",23.8066314,90.5701778,LGD,2,1,proj6981,Extending recreational facilities to the neighborhood,2022-11-15,9.59,0.19
+"Jahangir General Hospital","Rupganj",23.8091655,90.5358279,LGD,9,5,proj3316,Extending healthcare facilities to the neighborhood,2022-04-06,14.14,1.27
+"Jahangir Community Park","Rupganj",23.8091655,90.5358279,LGD,1,1,proj7726,Extending recreational facilities to the neighborhood,2022-11-06,12.05,0.12
+"Atlashpur General Hospital","Bhulta",23.8114074,90.5474247,LGD,21,5,proj4907,Extending healthcare facilities to the neighborhood,2023-01-07,0.0,0.0
+"Kajigochh General Hospital","Shalbahan",23.81165412,90.41992933,LGD,21,5,proj4048,Extending healthcare facilities to the neighborhood,2023-01-13,0.0,0.0
+"Hatabo Government Primary School","Kanchan",23.81429356,90.55622879,MOEDU,1,3,proj1430,Extending education facilities to the neighborhood,2023-01-12,0.0,0.0
+"Hatabo General Hospital","Kanchan",23.81429356,90.55622879,LGD,22,5,proj4932,Extending healthcare facilities to the neighborhood,2022-07-22,8.27,1.82
+"Hatabo Community Park","Kanchan",23.81429356,90.55622879,LGD,2,1,proj8071,Extending recreational facilities to the neighborhood,2022-07-03,46.58,0.93
+"Harinda Community Park","Rupganj",23.8178692,90.5385196,LGD,2,1,proj1759,Extending recreational facilities to the neighborhood,2021-06-07,100.0,3.07
+"Agarpara Government Primary School","Rupganj",23.82537587,90.52254964,MOEDU,3,3,proj4893,Extending education facilities to the neighborhood,2021-10-27,38.26,1.15
+"Agarpara Community Park","Rupganj",23.82537587,90.52254964,LGD,1,1,proj5028,Extending recreational facilities to the neighborhood,2022-02-18,83.56,0.84
+"Pitalganj Community Park","Rupganj",23.8259202,90.5530399,LGD,2,1,proj5163,Extending recreational facilities to the neighborhood,2022-04-24,65.75,1.31
+"Gowal Para Government Primary School","Rupganj",23.8276418,90.5030257,MOEDU,3,3,proj1587,Extending education facilities to the neighborhood,2023-01-13,0.0,0.0
+"Gowal Para General Hospital","Rupganj",23.8276418,90.5030257,LGD,24,5,proj4224,Extending healthcare facilities to the neighborhood,2021-10-13,23.73,5.7
+"Gowal Para Community Park","Rupganj",23.8276418,90.5030257,LGD,2,1,proj7787,Extending recreational facilities to the neighborhood,2021-11-07,84.0,2.24
+"Kanchan General Hospital","Kanchan",23.8316428,90.558248,LGD,24,5,proj3971,Extending healthcare facilities to the neighborhood,2023-01-11,0.0,0.0
+"Pitalganj Brahmankhali Government Primary School","Rupganj",23.83284605,90.54201074,MOEDU,1,3,proj7880,Extending education facilities to the neighborhood,2022-12-31,0.0,0.0
+"Pitalganj Brahmankhali General Hospital","Rupganj",23.83284605,90.54201074,LGD,14,5,proj7688,Extending healthcare facilities to the neighborhood,2021-07-17,28.55,4.0
+"Pitalganj Brahmankhali Community Park","Rupganj",23.83284605,90.54201074,LGD,2,1,proj6340,Extending recreational facilities to the neighborhood,2022-08-27,31.51,0.63
+"Yusufganj Government Primary School","Rupganj",23.8346268,90.4883393,MOEDU,4,3,proj5660,Extending education facilities to the neighborhood,2022-02-06,28.95,1.16
+"Gutiabo Government Primary School","Rupganj",23.8352253,90.5276705,MOEDU,3,3,proj4979,Extending education facilities to the neighborhood,2022-08-09,12.15,0.36
+"Gutiabo General Hospital","Rupganj",23.8352253,90.5276705,LGD,7,5,proj3331,Extending healthcare facilities to the neighborhood,2022-02-15,16.88,1.18
+"Kenduapara Government Primary School","Kanchan",23.8353554,90.5554791,MOEDU,3,3,proj1227,Extending education facilities to the neighborhood,2022-04-12,23.01,0.69
+"Kenduapara General Hospital","Kanchan",23.8353554,90.5554791,LGD,21,5,proj6752,Extending healthcare facilities to the neighborhood,2022-12-22,0.0,0.0
+"Chowdhurypara Community Park","Kanchan",23.8363742,90.5696117,LGD,2,1,proj5060,Extending recreational facilities to the neighborhood,2023-01-09,0.0,0.0
+"Poshi Harar Bari Government Primary School","Rupganj",23.8385501,90.4902048,MOEDU,5,3,proj5731,Extending education facilities to the neighborhood,2022-05-03,21.1,1.06
+"Poshi Harar Bari General Hospital","Rupganj",23.8385501,90.4902048,LGD,7,5,proj5233,Extending healthcare facilities to the neighborhood,2021-12-02,20.99,1.47
+"No. 40 Kortia Pubergaon Government Primary School","Bholabo",23.84080923,90.58791205,MOEDU,5,3,proj8315,Extending education facilities to the neighborhood,2021-10-02,40.55,2.03
+"Ranipura Government Primary School","Kanchan",23.8414317,90.5716043,MOEDU,3,3,proj2607,Extending education facilities to the neighborhood,2022-04-30,21.37,0.64
+"Ranipura General Hospital","Kanchan",23.8414317,90.5716043,LGD,17,5,proj3213,Extending healthcare facilities to the neighborhood,2023-01-16,0.0,0.0
+"Birabo Government Primary School","Kanchan",23.8569547,90.5536643,MOEDU,5,3,proj8573,Extending education facilities to the neighborhood,2023-01-11,0.0,0.0
+"Birabo General Hospital","Kanchan",23.8569547,90.5536643,LGD,23,5,proj8106,Extending healthcare facilities to the neighborhood,2022-10-18,3.45,0.79
+"Taroil General Hospital","Kanchan",23.8639508,90.5646438,LGD,9,5,proj5458,Extending healthcare facilities to the neighborhood,2023-01-16,0.0,0.0
+"Taroil Community Park","Kanchan",23.8639508,90.5646438,LGD,2,1,proj3407,Extending recreational facilities to the neighborhood,2022-06-26,48.49,0.97
+"Hirnal General Hospital","Daudpur",23.8641457,90.4105208,LGD,10,5,proj5197,Extending healthcare facilities to the neighborhood,2022-12-27,0.0,0.0
+"Hirnal Community Park","Daudpur",23.8641457,90.4105208,LGD,2,1,proj5810,Extending recreational facilities to the neighborhood,2021-05-10,100.0,3.23
+"Taroil Birabo General Hospital","Kanchan",23.865362,90.5619884,LGD,9,5,proj9522,Extending healthcare facilities to the neighborhood,2022-12-24,0.0,0.0
+"Taroil Birabo Community Park","Kanchan",23.865362,90.5619884,LGD,2,1,proj5373,Extending recreational facilities to the neighborhood,2022-04-18,67.4,1.35
+"Jinda General Hospital","Daudpur",23.8709465,90.5207756,LGD,25,5,proj6241,Extending healthcare facilities to the neighborhood,2022-08-16,6.9,1.73
+"Jinda Community Park","Daudpur",23.8709465,90.5207756,LGD,2,1,proj9906,Extending recreational facilities to the neighborhood,2023-01-14,0.0,0.0
+"Boilda General Hospital","Daudpur",23.8768134,90.5353583,LGD,16,5,proj2298,Extending healthcare facilities to the neighborhood,2022-06-08,10.68,1.71
+"Boilda Community Park","Daudpur",23.8768134,90.5353583,LGD,1,1,proj8160,Extending recreational facilities to the neighborhood,2022-12-23,0.0,0.0
+"No. 37 Bholabo Government Primary School","Bholabo",23.8779349,90.5878684,MOEDU,3,3,proj9843,Extending education facilities to the neighborhood,2022-10-12,6.3,0.19
+"No. 37 Bholabo General Hospital","Bholabo",23.8779349,90.5878684,LGD,13,5,proj4482,Extending healthcare facilities to the neighborhood,2021-08-26,26.36,3.43
+"Rohila Community Park","Daudpur",23.8792481,90.553981,LGD,1,1,proj5770,Extending recreational facilities to the neighborhood,2021-12-15,92.0,1.01
+"Purbo Daudpur General Hospital","Daudpur",23.882795,90.5764378,LGD,21,5,proj5838,Extending healthcare facilities to the neighborhood,2023-01-09,0.0,0.0
+"Bholabo Adorsho General Hospital","Bholabo",23.88374878,90.59371233,LGD,12,5,proj2669,Extending healthcare facilities to the neighborhood,2022-04-05,14.19,1.7
+"Daudpur General Hospital","Daudpur",23.8878345,90.5722163,LGD,15,5,proj3215,Extending healthcare facilities to the neighborhood,2022-09-10,5.53,0.83
+"Daudpur Community Park","Daudpur",23.8878345,90.5722163,LGD,2,1,proj7747,Extending recreational facilities to the neighborhood,2022-08-11,35.89,0.72
+"Agla Government Primary School","Daudpur",23.8915917,90.5606133,MOEDU,4,3,proj3806,Extending education facilities to the neighborhood,2021-12-11,34.16,1.37
+"Bodamoynaguri Community Park","Debnagar",26.4204885,88.5061948,LGD,1,1,proj5414,Extending recreational facilities to the neighborhood,2022-12-25,0.0,0.0
+"Khatiagochh Government Primary School","Debnagar",26.4473367,88.49846,MOEDU,2,3,proj7741,Extending education facilities to the neighborhood,2022-12-24,0.0,0.0
+"Khatiagochh General Hospital","Debnagar",26.4473367,88.49846,LGD,19,5,proj8325,Extending healthcare facilities to the neighborhood,2022-02-19,16.66,3.17
+"Bhojonpur General Hospital","Bhojonpur",26.469149,88.483176,LGD,15,5,proj1907,Extending healthcare facilities to the neighborhood,2023-01-01,0.0,0.0
+"Bhojonpur Community Park","Bhojonpur",26.469149,88.483176,LGD,1,1,proj1206,Extending recreational facilities to the neighborhood,2021-07-22,83.0,1.41
+"Jhalingigochh Community Park","Debnagar",26.4695022,88.4868529,LGD,1,1,proj2458,Extending recreational facilities to the neighborhood,2022-08-23,32.6,0.33
+"Maaligochh Government Primary School","Bhojonpur",26.482545,88.4748633,MOEDU,1,3,proj6016,Extending education facilities to the neighborhood,2022-09-10,9.22,0.09
+"Maaligochh Community Park","Bhojonpur",26.482545,88.4748633,LGD,1,1,proj1092,Extending recreational facilities to the neighborhood,2022-06-11,52.6,0.53
+"Majhipara Government Primary School","Shalbahan",26.4834629,88.421677,MOEDU,1,3,proj5547,Extending education facilities to the neighborhood,2021-10-23,38.63,0.39
+"Majhipara Community Park","Shalbahan",26.4834629,88.421677,LGD,1,1,proj5879,Extending recreational facilities to the neighborhood,2022-12-25,0.0,0.0
+"Ajeej Nagar Government Primary School","Tetulia",26.48788874,88.36001292,MOEDU,4,3,proj4849,Extending education facilities to the neighborhood,2022-12-22,0.0,0.0
+"Ajeej Nagar Community Park","Tetulia",26.48788874,88.36001292,LGD,1,1,proj3778,Extending recreational facilities to the neighborhood,2021-06-15,100.0,1.52
+"Aamjuani Government Primary School","Debnagar",26.4897783,88.5119467,MOEDU,2,3,proj2387,Extending education facilities to the neighborhood,2022-01-26,29.95,0.6
+"Aamjuani Community Park","Debnagar",26.4897783,88.5119467,LGD,1,1,proj5580,Extending recreational facilities to the neighborhood,2022-03-28,73.15,0.73
+"Jaamriguri Government Primary School","Shalbahan",26.4910106,88.396602,MOEDU,5,3,proj9285,Extending education facilities to the neighborhood,2023-01-04,0.0,0.0
+"Jaamriguri Community Park","Shalbahan",26.4910106,88.396602,LGD,1,1,proj9956,Extending recreational facilities to the neighborhood,2021-11-01,97.0,1.13
+"Bowalmaari General Hospital","Shalbahan",26.4928829,88.3382535,LGD,14,5,proj8269,Extending healthcare facilities to the neighborhood,2022-10-18,3.45,0.48
+"Bowalmaari Community Park","Shalbahan",26.4928829,88.3382535,LGD,2,1,proj8816,Extending recreational facilities to the neighborhood,2023-01-12,0.0,0.0
+"Boiragigochh General Hospital","Bhojonpur",26.4940049,88.4721835,LGD,17,5,proj9488,Extending healthcare facilities to the neighborhood,2023-01-04,0.0,0.0
+"Boiragigochh Community Park","Bhojonpur",26.4940049,88.4721835,LGD,1,1,proj9145,Extending recreational facilities to the neighborhood,2023-01-03,0.0,0.0
+"Kalandigochh Community Park","Shalbahan",26.4959354,88.3880342,LGD,2,1,proj3469,Extending recreational facilities to the neighborhood,2023-01-04,0.0,0.0
+"Tetulia Model Government Primary School","Tetulia",26.49784,88.33755,MOEDU,2,3,proj5145,Extending education facilities to the neighborhood,2022-07-31,12.97,0.26
+"Tetulia Model General Hospital","Tetulia",26.49784,88.33755,LGD,19,5,proj6393,Extending healthcare facilities to the neighborhood,2023-01-19,0.0,0.0
+"Shibchondi Government Primary School","Debnagar",26.49840733,88.50178946,MOEDU,5,3,proj4919,Extending education facilities to the neighborhood,2022-12-27,0.0,0.0
+"Shibchondi General Hospital","Debnagar",26.49840733,88.50178946,LGD,5,5,proj5951,Extending healthcare facilities to the neighborhood,2022-07-19,8.44,0.42
+"Shibchondi Community Park","Debnagar",26.49840733,88.50178946,LGD,2,1,proj1718,Extending recreational facilities to the neighborhood,2022-11-17,9.04,0.18
+"Mathafata Community Park","Tetulia",26.50265452,88.37025024,LGD,1,1,proj4900,Extending recreational facilities to the neighborhood,2022-04-03,71.51,0.72
+"Nondogochh General Hospital","Debnagar",26.5030717,88.510585,LGD,8,5,proj5711,Extending healthcare facilities to the neighborhood,2022-12-23,0.0,0.0
+"Nondogochh Community Park","Debnagar",26.5030717,88.510585,LGD,1,1,proj3120,Extending recreational facilities to the neighborhood,2021-05-14,100.0,1.6
+"Boro Duliagochh Government Primary School","Shalbahan",26.5083906,88.38943675,MOEDU,4,3,proj3348,Extending education facilities to the neighborhood,2022-11-06,4.02,0.16
+"Boro Duliagochh General Hospital","Shalbahan",26.5083906,88.38943675,LGD,25,5,proj1181,Extending healthcare facilities to the neighborhood,2023-01-10,0.0,0.0
+"Geetalgoch Government Primary School","Bhojonpur",26.5086811,88.4719455,MOEDU,3,3,proj1106,Extending education facilities to the neighborhood,2022-11-03,4.29,0.13
+"Geetalgoch Community Park","Bhojonpur",26.5086811,88.4719455,LGD,1,1,proj3490,Extending recreational facilities to the neighborhood,2023-01-02,0.0,0.0
+"Bhodesshor General Hospital","Bhojonpur",26.51410659,88.48702256,LGD,11,5,proj8293,Extending healthcare facilities to the neighborhood,2022-01-16,18.52,2.04
+"Khalpara General Hospital","Tetulia",26.5162188,88.3886477,LGD,5,5,proj4903,Extending healthcare facilities to the neighborhood,2023-01-05,0.0,0.0
+"Khalpara Community Park","Tetulia",26.5162188,88.3886477,LGD,2,1,proj5450,Extending recreational facilities to the neighborhood,2021-10-30,93.0,2.28
+"Gowabari Government Primary School","Tetulia",26.525549,88.3691627,MOEDU,2,3,proj6242,Extending education facilities to the neighborhood,2022-12-30,0.0,0.0
+"Gowabari General Hospital","Tetulia",26.525549,88.3691627,LGD,22,5,proj5114,Extending healthcare facilities to the neighborhood,2022-03-16,15.29,3.36
+"Gowabari Community Park","Tetulia",26.525549,88.3691627,LGD,1,1,proj4135,Extending recreational facilities to the neighborhood,2022-12-29,0.0,0.0
+"Lohokachi Government Primary School","Shalbahan",26.530352,88.4092735,MOEDU,1,3,proj8267,Extending education facilities to the neighborhood,2023-01-19,0.0,0.0
+"Ronochondi Government Primary School","Tetulia",26.5324052,88.3649777,MOEDU,5,3,proj8932,Extending education facilities to the neighborhood,2021-07-12,48.04,2.4
+"Ronochondi Community Park","Tetulia",26.5324052,88.3649777,LGD,1,1,proj7575,Extending recreational facilities to the neighborhood,2022-10-31,13.7,0.14
+"Islampur Government Primary School","Tirnoihat",26.5369314,88.3659623,MOEDU,2,3,proj8961,Extending education facilities to the neighborhood,2021-11-16,36.44,0.73
+"Bholajoat Community Park","Tirnoihat",26.5372393,88.393252,LGD,1,1,proj7969,Extending recreational facilities to the neighborhood,2021-12-23,99.18,0.99
+"Abdul Hakim & Abdul Motin Government Primary School","Tirnoihat",26.541235,88.387245,MOEDU,2,3,proj2422,Extending education facilities to the neighborhood,2023-01-09,0.0,0.0
+"Khoykhaatpara Community Park","Tirnoihat",26.5524062,88.37556671,LGD,1,1,proj7301,Extending recreational facilities to the neighborhood,2021-08-08,93.0,1.37
+"Fokirpara Government Primary School","Tirnoihat",26.5540509,88.396669,MOEDU,5,3,proj1233,Extending education facilities to the neighborhood,2022-08-27,10.5,0.53
+"Fokirpara General Hospital","Tirnoihat",26.5540509,88.396669,LGD,7,5,proj2357,Extending healthcare facilities to the neighborhood,2021-10-15,23.62,1.65
+"Fokirpara Community Park","Tirnoihat",26.5540509,88.396669,LGD,2,1,proj5020,Extending recreational facilities to the neighborhood,2023-01-02,0.0,0.0
+"Mondolpara General Hospital","Tirnoihat",26.55872,88.426121,LGD,20,5,proj3936,Extending healthcare facilities to the neighborhood,2021-11-02,22.63,4.53
+"Gowalgoch Government Primary School","Banglabandha",26.5788339,88.38756893,MOEDU,1,3,proj4988,Extending education facilities to the neighborhood,2021-10-30,37.99,0.38
+"Gowalgoch General Hospital","Banglabandha",26.5788339,88.38756893,LGD,21,5,proj2090,Extending healthcare facilities to the neighborhood,2022-12-23,0.0,0.0
+"Gowalgoch Community Park","Banglabandha",26.5788339,88.38756893,LGD,2,1,proj6294,Extending recreational facilities to the neighborhood,2022-10-23,15.89,0.32
+"Sipaipara General Hospital","Banglabandha",26.5886617,88.3946118,LGD,5,5,proj7823,Extending healthcare facilities to the neighborhood,2021-09-14,25.32,1.27
+"Sipaipara Community Park","Banglabandha",26.5886617,88.3946118,LGD,1,1,proj9099,Extending recreational facilities to the neighborhood,2021-10-15,97.0,1.18
+"Mirkadim Bridge","Mirkadim",23.548083,90.47725,BBA,1050,5,proj1235,Improving structural strength of the bridge,2022-12-23,0.0,0.0
+"Kalurghat Bridge","Chittagong",22.395861,91.888944,LGED,1320,5,proj3072,Improving structural strength of the bridge,2022-02-14,16.93,223.48
+"Keane Bridge","Sylhet",24.887556,91.868,LGED,1130,5,proj9303,Improving structural strength of the bridge,2023-01-10,0.0,0.0
+"Lalon Shah Bridge","Pabna,Kushtia",24.065167,89.029556,LGED,1930,5,proj5852,Improving structural strength of the bridge,2021-11-07,22.36,431.55
+"Pabna-Kushtia Link Road","Pabna,Kushtia",24.065167,89.029556,PWD,120,5,proj7024,Improving structural strength of the road,2023-01-06,0.0,0.0
+"Kishoreganj-Brahmanbaria Link Road","Kishoreganj,Brahmanbaria",24.044611,90.995778,PWD,360,5,proj5730,Improving structural strength of the road,2021-06-19,30.08,108.29
+"Shah Amanat Bridge","Chittagong",22.3253,91.8532,PWD,2200,5,proj4716,Improving structural strength of the bridge,2023-01-17,0.0,0.0
+"Barisal-Patuakhali Link Road","Barisal,Patuakhali",22.465417,90.341083,LGED,150,5,proj8626,Improving structural strength of the road,2023-01-17,0.0,0.0
+"Asmat Ali Khan Bridge 7th Bangladesh-China Friendship Bridge","Madaripur",23.169639,90.237556,PWD,2270,5,proj6782,Improving structural strength of the bridge,2022-12-29,0.0,0.0
+"Kanchpur Bridge","Narayanganj",23.703278,90.517611,PWD,1620,5,proj5876,Improving structural strength of the bridge,2021-07-25,28.11,455.38
+"Meghna Bridge 1st Bangladesh-Japan Friendship Bridge","Narayanganj",23.605972,90.613944,BBA,1350,5,proj1644,Improving structural strength of the bridge,2023-01-03,0.0,0.0
+"Gumti Bridge","Munshiganj",23.53025,90.702222,LGED,2080,5,proj7221,Improving structural strength of the bridge,2023-01-02,0.0,0.0
+"Mahananda Bridge 3th Bangladesh-China Friendship Bridge","Munshiganj",23.569528,90.512389,LGED,820,5,proj1655,Improving structural strength of the bridge,2021-11-30,21.1,173.02
