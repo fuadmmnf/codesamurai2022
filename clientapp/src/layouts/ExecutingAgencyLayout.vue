@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="bg-cyan-6 text-black">
       <q-toolbar>
         <q-btn
           flat
@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          IIT Heckers
+          Executing Agency
         </q-toolbar-title>
 
-        <div>Preliminary Project</div>
+        <div>IIT Heckers</div>
       </q-toolbar>
     </q-header>
 
@@ -51,21 +51,33 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksData = [
   {
-    title: 'Maps',
-    caption: 'See current projects on maps',
-    icon: '🗺',
-    link: '/'
+    title: 'Dashboard',
+    caption: 'Executing agency dashboard',
+    icon: '🏣',
+    link: '/#/exec'
   },
   {
     title: 'Projects',
-    caption: 'Get list of all current projects',
+    caption: 'List of all projects',
     icon: '⚒',
-    link: '/#/client/projects'
-  }
+    link: '/#/exec/projects'
+  },
+  {
+    title: 'Proposals (DPPs)',
+    caption: 'List of all proposals',
+    icon: '📁',
+    link: '/#/exec/proposals'
+  },
+  {
+    title: 'Add Proposals (DPPs)',
+    caption: 'Add new project',
+    icon: '➕',
+    link: '/#/exec/proposals/add'
+  },
 ]
 
 export default {
-  name: 'MainLayout',
+  name: 'ExecutingLayout',
   components: {
     EssentialLink
   },
