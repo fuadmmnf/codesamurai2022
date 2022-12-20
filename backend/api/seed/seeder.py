@@ -1,7 +1,7 @@
 import pandas as pd
 from api.models import *
 from datetime import datetime
-
+import bcrypt
 roles = pd.read_csv(open('api/seed/data/user_types.csv'))
 UserType.objects.all().delete()
 User.objects.all().delete()
@@ -14,7 +14,7 @@ for i, role in roles.iterrows():
 
     User(
         username=role['code'],
-        password=hash('secret123'),
+        password= 'secret123'.encode('utf-8'),
         user_type=UserType.objects.get(code__exact=role['code']),
     ).save()
 
@@ -58,7 +58,7 @@ for i, proposal in proposals.iterrows():
         latitude=proposal['latitude'],
         longitude=proposal['longitude'],
         cost=proposal['cost'],
-        timespan=proposal['timespan'],
+        timespan=proposal['timespan']*365,
         goal=proposal['goal'],
         is_accepted=False,
     ).save()

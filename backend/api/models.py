@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class UserType(models.Model):
-    code = models.CharField(primary_key=True, max_length=32)
+    code = models.CharField(max_length=32)
     committee = models.CharField(max_length=64)
     description = models.CharField(max_length=1000)
 
@@ -15,14 +15,14 @@ class User(models.Model):
 
 
 class Agency(models.Model):
-    code = models.CharField(primary_key=True, max_length=32)
+    code = models.CharField( max_length=32)
     name = models.CharField(max_length=256)
     type = models.CharField(max_length=32)
     description = models.CharField(max_length=1000)
 
 
 class Project(models.Model):
-    project_id = models.CharField(primary_key=True, max_length=32)
+    project_id = models.CharField(max_length=32)
     exec = models.ForeignKey(Agency, on_delete=models.CASCADE)
     project_name = models.CharField(max_length=256)
     location = models.CharField(max_length=256)
@@ -42,7 +42,7 @@ class Project(models.Model):
 
 
 class Component(models.Model):
-    component_id = models.CharField(primary_key=True, max_length=32)
+    component_id = models.CharField(max_length=32)
     project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
     executing_agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
     component_type = models.CharField(max_length=32)
