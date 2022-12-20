@@ -48,15 +48,16 @@ for i, project in projects.iterrows():
 
 components = pd.read_csv(open('api/seed/data/components.csv'))
 Component.objects.all().delete()
-for i, component in components.iterrows():
+for i, component in components.sort_values(by='depends_on').iterrows():
+    print(component['depends_on'])
     Component(
         component_id=component['component_id'],
         project_id=Project.objects.get(project_id__exact=component['project_id']),
-        exec=Agency.objects.get(code__exact=component['execution_agency']),
+        executing_agency=Agency.objects.get(code__exact=component['ececuting_agency']),
         component_type=component['component_type'],
-        depends_on=None if len(component['depends_on']) < 1 else Component.objects.get(
+        depends_on=None if pd.isna(component['depends_on']) else Component.objects.get(
             component_id__exact=component['depends_on']),
-        budget_ratio=component['budget_ratio'],
+        budget_ratio=component['budget ratio'],
     ).save()
 
 proposals = pd.read_csv(open('api/seed/data/proposals.csv'))

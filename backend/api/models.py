@@ -9,7 +9,7 @@ class UserType(models.Model):
 
 
 class User(models.Model):
-    username= models.CharField(max_length=1000)
+    username = models.CharField(max_length=1000)
     password = models.CharField(max_length=512)
     user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
 
@@ -31,19 +31,20 @@ class Project(models.Model):
     longitude = models.FloatField()
     cost = models.FloatField()
     timespan = models.FloatField()
-    feedback= models.CharField(max_length=1000, default='')
-    rating= models.IntegerField(null=True)
+    feedback = models.CharField(max_length=1000, default='')
+    rating = models.IntegerField(null=True)
     goal = models.CharField(max_length=1000)
     completion = models.FloatField(null=True)
     actual_cost = models.FloatField(null=True)
     is_accepted = models.BooleanField(default=True)
     proposal_date = models.DateField(null=True)
+    is_deleted = models.BooleanField(default=False)
 
 
 class Component(models.Model):
     component_id = models.CharField(primary_key=True, max_length=32)
     project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
-    execution_agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
+    executing_agency = models.ForeignKey(Agency, on_delete=models.CASCADE)
     component_type = models.CharField(max_length=32)
     depends_on = models.ForeignKey("self", null=True, on_delete=models.SET_NULL)
     budget_ratio = models.FloatField()
