@@ -39,6 +39,7 @@ class Project(models.Model):
     is_accepted = models.BooleanField(default=True)
     proposal_date = models.DateField(null=True)
     is_deleted = models.BooleanField(default=False)
+    est_completion_date = models.DateField(null=True)
 
 
 class Component(models.Model):
@@ -48,7 +49,8 @@ class Component(models.Model):
     component_type = models.CharField(max_length=32)
     depends_on = models.ForeignKey("self", null=True, on_delete=models.SET_NULL)
     budget_ratio = models.FloatField()
-
+    est_start_date = models.DateField(null=True)
+    est_completion_date = models.DateField(null=True)
 
 class Constraint(models.Model):
     constraint_type = models.CharField(max_length=32)
