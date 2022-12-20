@@ -36,6 +36,7 @@
             <q-input
               filled
               v-model="Latitude"
+              step="0.01"
               label="Project Latitude"
               hint="Enter project latitude"
               type="number"
@@ -47,7 +48,8 @@
             <q-input
               class="q-input-padding"
               filled
-              v-model="name"
+              v-model="Longitude"
+              step="0.01"
               label="Longitude"
               type="number"
               hint="Enter project Longitude"
@@ -61,6 +63,7 @@
             <q-input
               filled
               v-model="Cost"
+              step="0.01"
               label="Project Cost"
               hint="Enter project cost"
               type="number"
@@ -72,6 +75,7 @@
             <q-input
               filled
               v-model="Timespan"
+              step="0.01"
               label="Project Timespan"
               hint="Enter project timespan"
               type="number"
@@ -102,6 +106,7 @@
 
 <script>
 import {ref} from "vue";
+import {api} from "boot/axios";
 
 export default {
   // name    - TItle of the project
@@ -128,7 +133,32 @@ export default {
     }
   },
   methods: {
-    onSubmit(){},
+    onSubmit(){
+      let temp ={
+        project_id: "prop"+Math.random(),
+        exec: "MOEDU",
+        name: this.name,
+        location: this.Location,
+        start_date: null,
+        latitude: this.Latitude,
+        longitude: this.Longitude,
+        cost: this.Cost,
+        timespan: this.Timespan,
+        feedback: "",
+        rating: null,
+        goal: '',
+        completion: 0.0,
+        actual_cost: 0.0,
+        is_accepted: true,
+        proposal_date: new Date(this.proposal_date).toISOString().split('T')[0],
+        is_deleted: false
+      }
+      api.post('proposals',temp).then((response)=>{
+        if(response.status === 200){
+          this.$router.push('/exec/proposals')
+        }
+      })
+    },
     onReset(){},
   }
 }
