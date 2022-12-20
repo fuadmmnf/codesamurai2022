@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md">
-    <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">Proposal Name</div>
+  <div class="q-pa-md" v-if="proposal">
+    <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">{{ proposal.project_name }}</div>
     <q-card>
       <q-tabs
         v-model="tab"
@@ -22,44 +22,36 @@
             <tbody>
             <tr>
               <th class="text-left ">Location</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ proposal.location  }}</td>
             </tr>
             <tr>
               <th class="text-left ">Latitude</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ proposal.latitude }}</td>
             </tr>
             <tr>
               <th class="text-left ">Longitude</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ proposal.longitude }}</td>
             </tr>
             <tr>
               <th class="text-left ">Executing Company</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ proposal.exec }}</td>
             </tr>
             <tr>
               <th class="text-left ">Cost</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ proposal.cost }}</td>
             </tr>
             <tr>
               <th class="text-left ">Timepsan</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ proposal.timespan }}</td>
             </tr>
             <tr>
               <th class="text-left ">Proposal Date</th>
-              <td class="text-left">159</td>
-            </tr>
-            <tr>
-              <th class="text-left ">Completion</th>
-              <td class="text-left">159</td>
-            </tr>
-            <tr>
-              <th class="text-left ">Goal</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ proposal.proposal_date}}</td>
             </tr>
             <tr>
               <th class="text-left ">Actions</th>
               <td class="text-left">
-                <q-btn @click="$router.push('/exec/proposals/update')">Update</q-btn>
+                <q-btn @click="$router.push(`/exec/proposals/update/${proposal.project_id}`)">Update</q-btn>
               </td>
             </tr>
             </tbody>
@@ -77,6 +69,7 @@
 
 <script>
 import Gantt from "components/gantt.vue";
+import {api} from "boot/axios";
 export default {
   name: "ExecProposalDetails",
   components: {
@@ -84,9 +77,17 @@ export default {
   },
   data() {
     return{
-      tab: 'details'
+      tab: 'details',
+      proposal_id: null,
+      proposal: null
     }
-  }
+  },
+  mounted() {
+    this.proposal_id = this.$route.params.project_id;
+    api.get(`proposals/${this.proposal_id}`).then((response) => {
+      this.proposal = response.data.data
+    })
+  },
 }
 </script>
 

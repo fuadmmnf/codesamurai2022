@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md" v-if="project">
-    <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">Project Name</div>
+    <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">{{ project.project_name }}</div>
     <q-card>
       <q-tabs
         v-model="tab"

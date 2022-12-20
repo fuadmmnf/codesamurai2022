@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md" v-if="rows">
     <q-table
       class="my-sticky-header-table"
       title="📁 Proposals (DPPs)"
@@ -20,23 +20,20 @@
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="name" :props="props">
-            {{ props.row.name }}
+            {{ props.row.project_name }}
           </q-td>
-          <q-td key="Location" :props="props">
-            {{ props.row.Location }}
+          <q-td key="location" :props="props">
+            {{ props.row.location }}
           </q-td>
-          <q-td key="Exec" :props="props">
-            {{ props.row.Exec }}
+          <q-td key="cost" :props="props">
+            {{ props.row.cost }}
           </q-td>
-          <q-td key="Cost" :props="props">
-            {{ props.row.Cost }}
+          <q-td key="timespan" :props="props">
+            {{ props.row.timespan }}
           </q-td>
-          <q-td key="Timespan" :props="props">
-            {{ props.row.Timespan }}
-          </q-td>
-          <q-td key="Timespan" :props="props" style="align-items: end">
+          <q-td key="actions" :props="props" style="align-items: end">
             <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Details"
-                   @click="$router.push('/exec/proposals/detail')"/>
+                   @click="$router.push(`/exec/proposals/detail/${props.row.project_id }`)"/>
           </q-td>
         </q-tr>
       </template>
@@ -46,6 +43,7 @@
 
 <script>
 import { ref } from 'vue'
+import {api} from "boot/axios";
 
 export default {
   name: 'ExecProposalsIndex',
@@ -53,39 +51,24 @@ export default {
     return {
       filter: ref(''),
       columns: [
-        // name    - TItle of the project
-        // Location - Location of the Project
-        // Latitude - Latitude of the project
-        // Longitude - Longitude of the project
-        // Exec - Executing Agency
-        // Cost - Projected Cost in crores
-        // Timespan - Timespan of the project in years
-        // Project_id - unique id of the project
-        // Goal - Objective of the project
-        // proposal_date    - When was the project proposed
         {
           name: 'name', required: true, label: 'Project Name', align: 'left', field: row => row.name,
           format: val => `${val}`,
           sortable: true
         },
-        { name: 'Location', align: 'center', label: 'Location', field: 'Location', sortable: true },
-        { name: 'Exec', label: 'Executing Agency', field: 'Exec', sortable: true },
-        { name: 'Cost', label: 'Cost', field: 'Cost', sortable: true },
-        { name: 'Timespan', label: 'Timespan', field: 'Timespan' },
-        { name: 'actions', label: 'Actions', field: 'action', sortable: true }
+        { name: 'location', align: 'center', label: 'Location', field: 'location', sortable: true },
+        { name: 'cost', label: 'Cost', field: 'cost', sortable: true },
+        { name: 'timespan', label: 'Timespan', field: 'timespan' },
+        { name: 'actions', label: 'Actions', field: 'actions', sortable: true }
       ],
-      rows: [
-        {
-          name: "Fazlul Rahman Memorial General Hospital",
-          Location: "Tarabo",
-          Exec: "LGD",
-          Cost: 1000000,
-          Timespan: '2'
-        }
-
-      ]
+      rows: null
     }
-  }
+  },
+  mounted(){
+    api.get('proposals').then((response)=>{
+      this.rows = response.data.data
+    })
+  },
 }
 </script>
 <style lang="sass">

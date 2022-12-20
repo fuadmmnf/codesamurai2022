@@ -1,5 +1,5 @@
 <template>
-  <q-page-container style="padding-left: 65px;padding-right: 65px;">
+  <q-page-container style="padding-left: 65px;padding-right: 65px;" v-if="project">
     <div class="text-h6 flex flex-center" style="margin-bottom: 15px;">⚒ <b>Update Proposal</b></div>
     <div class="q-pa-md" style="max-width: 100%">
 
@@ -47,7 +47,7 @@
             <q-input
               class="q-input-padding"
               filled
-              v-model="name"
+              v-model="Longitude"
               label="Longitude"
               type="number"
               hint="Enter project Longitude"
@@ -102,6 +102,7 @@
 
 <script>
 import {ref} from "vue";
+import {api} from "boot/axios";
 
 export default {
   // name    - TItle of the project
@@ -125,7 +126,22 @@ export default {
       Cost: null,
       Timespan: null,
       proposal_date: null,
+      project_id: '',
+      project: null,
     }
+  },
+  mounted() {
+    this.project_id = this.$route.params.project_id;
+    api.get(`proposals/${this.project_id}`).then((response) => {
+      this.project = response.data.data
+      this.name = this.project.project_name
+      this.Location = this.project.location
+      this.Latitude = this.project.latitude
+      this.Longitude = this.project.longitude
+      this.Cost = this.project.cost
+      this.Timespan = this.project.timespan
+      this.proposal_date = this.project.proposal_date
+    })
   },
   methods: {
     onSubmit(){},

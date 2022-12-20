@@ -24,7 +24,7 @@ const routes = [
       { path: 'projects/detail/:project_id', component: () => import('pages/Govt/Projects/Detail.vue') },
       { path: 'projects/update/:project_id', component: () => import('pages/Govt/Projects/Update.vue') },
       { path: 'Proposals', component: () => import('pages/Govt/Proposals/index.vue') },
-      { path: 'Proposals/detail', component: () => import('pages/Govt/Proposals/Detail.vue') },
+      { path: 'Proposals/detail/:project_id', component: () => import('pages/Govt/Proposals/Detail.vue') },
     ]
   },
   {
@@ -35,9 +35,9 @@ const routes = [
       { path: 'projects', component: () => import('pages/ExecutingAgenices/projects/index.vue') },
       { path: 'projects/detail/:project_id', component: () => import('pages/ExecutingAgenices/projects/Detail.vue') },
       { path: 'proposals', component: () => import('pages/ExecutingAgenices/proposals/index.vue') },
-      { path: 'proposals/detail', component: () => import('pages/ExecutingAgenices/proposals/Detail.vue') },
+      { path: 'proposals/detail/:project_id', component: () => import('pages/ExecutingAgenices/proposals/Detail.vue') },
       { path: 'proposals/add', component: () => import('pages/ExecutingAgenices/proposals/AddProposal.vue') },
-      { path: 'proposals/update', component: () => import('pages/ExecutingAgenices/proposals/UpdateProposal.vue') },
+      { path: 'proposals/update/:project_id', component: () => import('pages/ExecutingAgenices/proposals/UpdateProposal.vue') },
     ]
   }
   // Always leave this as last one,
