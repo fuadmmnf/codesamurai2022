@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md">
-    <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">Project Name</div>
+  <div class="q-pa-md" v-if="project">
+    <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">{{ project.project_name }}</div>
     <q-card>
       <q-tabs
         v-model="tab"
@@ -23,43 +23,39 @@
             <tbody>
             <tr>
               <th class="text-left ">Location</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.location }}</td>
             </tr>
             <tr>
               <th class="text-left ">Latitude</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.latitude }}</td>
             </tr>
             <tr>
               <th class="text-left ">Longitude</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.longitude }}</td>
             </tr>
             <tr>
               <th class="text-left ">Executing Company</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.exec }}</td>
             </tr>
             <tr>
               <th class="text-left ">Cost</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.cost }}</td>
             </tr>
             <tr>
               <th class="text-left ">Actual Cost</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.actual_cost }}</td>
             </tr>
             <tr>
               <th class="text-left ">Timepsan</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.timespan }}</td>
             </tr>
             <tr>
               <th class="text-left ">Start Date</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.start_date }}</td>
             </tr>
             <tr>
               <th class="text-left ">Completion</th>
-              <td class="text-left">159</td>
-            </tr>
-            <tr>
-              <th class="text-left ">Goal</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.completion }}</td>
             </tr>
             </tbody>
           </q-markup-table>
@@ -76,8 +72,8 @@
             <div class="q-pa-md" style="max-width: 800px">
 
               <q-form
-                @submit="onSubmit"
-                @reset="onReset"
+                @submit="onsubmit"
+                @reset="onreset"
                 class="q-gutter-md"
               >
                 <q-input
@@ -95,8 +91,7 @@
                           icon="star_border"
                           icon-selected="star"
                           no-dimming/>
-                <span>Current Rating for project 4/5</span>
-
+                <span>Current Rating for project {{ ratingModel }}/5</span>
 
 
                 <div class="flex flex-center">
@@ -115,16 +110,36 @@
 
 <script>
 import Gantt from "components/gantt.vue";
+import {api} from "boot/axios";
+
 export default {
   name: "ClientProjectDetails",
   components: {
     Gantt
   },
-  data(){
-    return{
+  data() {
+    return {
       feedback: '',
       ratingModel: 3,
-      tab: 'details'
+      tab: 'details',
+      project_id: '',
+      project: null,
+    }
+  },
+  mounted() {
+    this.project_id = this.$route.params.project_id;
+    api.get(`projects/${this.project_id}`).then((response) => {
+      this.project = response.data.data
+      this.ratingModel = this.project.rating!=null ? this.project.rating : 0;
+      console.log(this.project)
+    })
+  },
+  methods: {
+    onsubmit() {
+
+    },
+    onreset() {
+
     }
   }
 }

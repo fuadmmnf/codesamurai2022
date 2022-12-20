@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md" v-if="project">
     <div class="text-h6" style="margin-left: 17px; margin-bottom: 15px;">Project Name</div>
     <q-card>
       <q-tabs
@@ -22,49 +22,45 @@
             <tbody>
             <tr>
               <th class="text-left ">Location</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.location }}</td>
             </tr>
             <tr>
               <th class="text-left ">Latitude</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.latitude }}</td>
             </tr>
             <tr>
               <th class="text-left ">Longitude</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.longitude }}</td>
             </tr>
             <tr>
               <th class="text-left ">Executing Company</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.exec }}</td>
             </tr>
             <tr>
               <th class="text-left ">Cost</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.cost }}</td>
             </tr>
             <tr>
               <th class="text-left ">Actual Cost</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.actual_cost }}</td>
             </tr>
             <tr>
               <th class="text-left ">Timepsan</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.timespan }}</td>
             </tr>
             <tr>
               <th class="text-left ">Start Date</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.start_date }}</td>
             </tr>
             <tr>
               <th class="text-left ">Completion</th>
-              <td class="text-left">159</td>
-            </tr>
-            <tr>
-              <th class="text-left ">Goal</th>
-              <td class="text-left">159</td>
+              <td class="text-left">{{ project.completion }}</td>
             </tr>
             <tr>
               <th class="text-left ">Actions</th>
               <td class="text-left">
                 <q-btn>Delete</q-btn>
-                <q-btn @click="$router.push('/govt/projects/update')">Update</q-btn>
+                <q-btn @click="$router.push(`/govt/projects/update/${project.project_id}`)">Update</q-btn>
                 <q-btn>Report</q-btn>
               </td>
             </tr>
@@ -84,20 +80,9 @@
 <script>
 import {ref} from 'vue'
 import Gantt from "components/gantt.vue";
+import {api} from "boot/axios";
 
 export default {
-  // name    - TItle of the project
-  // Location - Location of the Project
-  // Latitude - Latitude of the project location
-  // Longitude - Longitude of the project location
-  // Exec - Executing Agency
-  // Cost - Projected Cost in crores
-  // Timespan - Timespan of the project in years
-  // Project_id - Unique id of the project
-  // Goal - Goals of the project
-  // Start_date - Date of project start
-  // Completion - Percentage of project completed
-  // Actual_cost - Actual cost of the project to date
   name: 'ProjectDetails',
   components: {
     Gantt
@@ -105,8 +90,17 @@ export default {
   data() {
     return {
       filter: ref(''),
-      tab: 'details'
+      tab: 'details',
+      project_id: '',
+      project: null,
     }
+  },
+  mounted() {
+    this.project_id = this.$route.params.project_id;
+    api.get(`projects/${this.project_id}`).then((response) => {
+      this.project = response.data.data
+      this.ratingModel = this.project.rating!=null ? this.project.rating : 0;
+    })
   },
   methods: {},
 }

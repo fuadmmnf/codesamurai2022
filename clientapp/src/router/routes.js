@@ -11,8 +11,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/client/projects', component: () => import('pages/ClientProjects.vue') },
-      { path: '/client/projects/detail', component: () => import('pages/ClientProjectDetails.vue') },
-      { path: '/gantt', component: () => import('components/gantt.vue') },
+      { path: '/client/projects/detail/:project_id', component: () => import('pages/ClientProjectDetails.vue') },
     ]
   },
   {
@@ -22,8 +21,8 @@ const routes = [
       { path: '', component: () => import('pages/Govt/index.vue') },
       { path: 'projects', component: () => import('pages/Govt/Projects/index.vue') },
       { path: 'projects/add', component: () => import('pages/Govt/Projects/AddProjects.vue') },
-      { path: 'projects/detail', component: () => import('pages/Govt/Projects/Detail.vue') },
-      { path: 'projects/update', component: () => import('pages/Govt/Projects/Update.vue') },
+      { path: 'projects/detail/:project_id', component: () => import('pages/Govt/Projects/Detail.vue') },
+      { path: 'projects/update/:project_id', component: () => import('pages/Govt/Projects/Update.vue') },
       { path: 'Proposals', component: () => import('pages/Govt/Proposals/index.vue') },
       { path: 'Proposals/detail', component: () => import('pages/Govt/Proposals/Detail.vue') },
     ]
@@ -34,7 +33,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/ExecutingAgenices/index.vue') },
       { path: 'projects', component: () => import('pages/ExecutingAgenices/projects/index.vue') },
-      { path: 'projects/detail', component: () => import('pages/ExecutingAgenices/projects/Detail.vue') },
+      { path: 'projects/detail/:project_id', component: () => import('pages/ExecutingAgenices/projects/Detail.vue') },
       { path: 'proposals', component: () => import('pages/ExecutingAgenices/proposals/index.vue') },
       { path: 'proposals/detail', component: () => import('pages/ExecutingAgenices/proposals/Detail.vue') },
       { path: 'proposals/add', component: () => import('pages/ExecutingAgenices/proposals/AddProposal.vue') },

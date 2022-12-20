@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="rows">
     <div class="q-pa-md">
       <q-table
         class="my-sticky-header-table"
@@ -21,23 +21,23 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="name" :props="props">
-              {{ props.row.name }}
+              {{ props.row.project_name }}
             </q-td>
-            <q-td key="Location" :props="props">
-              {{ props.row.Location }}
+            <q-td key="location" :props="props">
+              {{ props.row.location }}
             </q-td>
-            <q-td key="Exec" :props="props">
-              {{ props.row.Exec }}
+            <q-td key="exec" :props="props">
+              {{ props.row.exec_id }}
             </q-td>
-            <q-td key="Cost" :props="props">
-              {{ props.row.Cost }}
+            <q-td key="cost" :props="props">
+              {{ props.row.cost }}
             </q-td>
-            <q-td key="Start_date" :props="props">
-              {{ props.row.Start_date }}
+            <q-td key="start_date" :props="props">
+              {{ props.row.start_date }}
             </q-td>
-            <q-td key="Start_date" :props="props" style="align-items: end">
+            <q-td key="actions" :props="props" style="align-items: end">
               <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Details"
-                     @click="$router.push('/govt/projects/detail')"/>
+                     @click="$router.push(`/govt/projects/detail/${props.row.project_id}`)"/>
             </q-td>
           </q-tr>
         </template>
@@ -48,6 +48,7 @@
 
 <script>
 import {ref} from 'vue'
+import {api} from "boot/axios";
 
 export default {
   name: 'GovtProjectIndex',
@@ -55,43 +56,25 @@ export default {
     return {
       filter: ref(''),
       columns: [
-        // name    - TItle of the project
-        // Location - Location of the Project
-        // Latitude - Latitude of the project location
-        // Longitude - Longitude of the project location
-        // Exec - Executing Agency
-        // Cost - Projected Cost in crores
-        // Timespan - Timespan of the project in years
-        // Project_id - Unique id of the project
-        // Goal - Goals of the project
-        // Start_date - Date of project start
-        // Completion - Percentage of project completed
-        // Actual_cost - Actual cost of the project to date
-
         {
           name: 'name', required: true, label: 'Project Name', align: 'left', field: row => row.name,
           format: val => `${val}`,
           sortable: true
         },
-        {name: 'Location', align: 'center', label: 'Location', field: 'Location', sortable: true},
-        {name: 'Exec', label: 'Executing Agency', field: 'Exec', sortable: true},
-        {name: 'Cost', label: 'Cost', field: 'Cost', sortable: true},
-        {name: 'Start_date', label: 'Start Date', field: 'Start_date'},
-        {name: 'actions', label: 'Actions', field: 'action', sortable: true}
+        {name: 'location', align: 'center', label: 'Location', field: 'location', sortable: true},
+        {name: 'exec', label: 'Executing Agency', field: 'exec', sortable: true},
+        {name: 'cost', label: 'Cost', field: 'cost', sortable: true},
+        {name: 'start_date', label: 'Start Date', field: 'start_date'},
+        {name: 'actions', label: 'Actions', field: 'actions', sortable: true}
       ],
-      rows: [
-        {
-          name: " Fazlul Rahman Memorial General Hospital",
-          Location: "Tarabo",
-          Exec: "LGD",
-          Cost: 1000000,
-          Start_date: '2023-01-02'
-        }
-
-      ]
+      rows: null,
     }
   },
-  methods: {},
+  mounted(){
+    api.get('projects').then((response)=>{
+      this.rows = response.data.data
+    })
+  },
 }
 </script>
 <style lang="sass">

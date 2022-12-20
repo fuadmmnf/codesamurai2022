@@ -47,7 +47,7 @@
             <q-input
               class="q-input-padding"
               filled
-              v-model="name"
+              v-model="Longitude"
               label="Longitude"
               type="number"
               hint="Enter project Longitude"
@@ -102,20 +102,9 @@
 
 <script>
 import {ref} from "vue";
+import {api} from "boot/axios";
 
 export default {
-  // name    - TItle of the project
-  // Location - Location of the Project
-  // Latitude - Latitude of the project location
-  // Longitude - Longitude of the project location
-  // Exec - Executing Agency
-  // Cost - Projected Cost in crores
-  // Timespan - Timespan of the project in years
-  // Project_id - Unique id of the project
-  // Goal - Goals of the project
-  // Start_date - Date of project start
-  // Completion - Percentage of project completed
-  // Actual_cost - Actual cost of the project to date
   name: "Update Project",
   data () {
     return {
@@ -130,7 +119,23 @@ export default {
       Start_date: null,
       Completion: 0,
       Actual_cost: 0,
+      project_id: '',
+      project: null,
     }
+  },
+  mounted() {
+    this.project_id = this.$route.params.project_id;
+    api.get(`projects/${this.project_id}`).then((response) => {
+      this.project = response.data.data
+      this.ratingModel = this.project.rating!=null ? this.project.rating : 0;
+      this.name = this.project.project_name
+      this.Location = this.project.location
+      this.Latitude = this.project.latitude
+      this.Longitude = this.project.longitude
+      this.Cost = this.project.cost
+      this.Timespan = this.project.timespan
+      this.Start_date = this.project.start_date
+    })
   },
   methods: {
     onSubmit(){},
