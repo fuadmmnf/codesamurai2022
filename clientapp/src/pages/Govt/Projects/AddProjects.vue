@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6 col-md-6">
+          <div class="col-lg-4 col-md-4">
             <q-input
               filled
               v-model="Cost"
@@ -68,13 +68,23 @@
               :rules="[ val => val && val.length > 0 || 'Please enter something']"
             />
           </div>
-          <div class="col-lg-6 col-md-6" style="padding-left: 10px;">
+          <div class="col-lg-4 col-md-4" style="padding-left: 10px;">
             <q-input
               filled
               v-model="Timespan"
               label="Project Timespan"
               hint="Enter project timespan"
               type="number"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Please enter something']"
+            />
+          </div>
+          <div class="col-lg-4 col-md-4" style="padding-left: 10px;">
+            <q-input
+              filled
+              v-model="Start_date"
+              hint="Start Date"
+              type="Date"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Please enter something']"
             />
