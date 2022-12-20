@@ -46,6 +46,7 @@
 
 <script>
 import {ref} from 'vue'
+import {api} from "boot/axios"
 
 export default {
   name: 'ClientProjects',
@@ -75,7 +76,7 @@ export default {
         {name: 'Exec', label: 'Executing Agency', field: 'Exec', sortable: true},
         {name: 'Cost', label: 'Cost', field: 'Cost', sortable: true},
         {name: 'Start_date', label: 'Start Date', field: 'Start_date'},
-        {name: 'actions', label: 'Actions', field: 'action', sortable: true}
+        {name: 'actions', label: 'Actions', field: 'actions', sortable: true}
       ],
       rows: [
         {
@@ -88,6 +89,11 @@ export default {
 
       ]
     }
+  },
+  mounted(){
+    api.get('projects').then((response)=>{
+      console.log(response.data)
+    })
   },
   methods: {},
 }
