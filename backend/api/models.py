@@ -8,6 +8,12 @@ class UserType(models.Model):
     description = models.CharField(max_length=1000)
 
 
+class User(models.Model):
+    username= models.CharField(max_length=1000)
+    password = models.CharField(max_length=512)
+    user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
+
+
 class Agency(models.Model):
     code = models.CharField(primary_key=True, max_length=32)
     name = models.CharField(max_length=256)
@@ -43,6 +49,6 @@ class Component(models.Model):
 
 
 class Constraint(models.Model):
-    constraint_type=models.CharField(max_length=32)
-    code=models.CharField(max_length=32)
-    max_limit=models.IntegerField()
+    constraint_type = models.CharField(max_length=32)
+    code = models.CharField(max_length=32)
+    max_limit = models.IntegerField()
