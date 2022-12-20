@@ -122,7 +122,6 @@ def get_component_detail_or_delete_by_id(request, project_id, component_id):
     Component.objects.get(component_id__exact=component_id).delete()
     return JsonResponse({'data': 'successful'}, status=200)
 
-
 @csrf_exempt
 def login(request):
     if request.method == 'POST':
@@ -138,3 +137,6 @@ def login(request):
 @csrf_exempt
 def get_all_agencies(request):
     return JsonResponse({'data': list(Agency.objects.all().values())})
+
+def get_all_contraints(request):
+    return JsonResponse({'data': list(Constraint.objects.all().values())})
