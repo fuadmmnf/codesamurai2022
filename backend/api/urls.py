@@ -13,4 +13,5 @@ urlpatterns = [
     path('projects/<str:project_id>/components/<str:component_id>', views.get_component_detail_or_delete_by_id),
     path('login', views.login),
     path('agencies', views.get_all_agencies),
+    path('constraints', views.get_all_contraints),
 ]

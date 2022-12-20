@@ -137,3 +137,6 @@ def login(request):
 @csrf_exempt
 def get_all_agencies(request):
     return JsonResponse({'data': list(Agency.objects.all().values())})
+
+def get_all_contraints(request):
+    return JsonResponse({'data': list(Constraint.objects.all().values())})
