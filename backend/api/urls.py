@@ -11,4 +11,5 @@ urlpatterns = [
 
     path('projects/<str:project_id>/components', views.get_all_or_save_components),
     path('projects/<str:project_id>/components/<str:component_id>', views.get_component_detail_or_delete_by_id),
+    path('login', views.login)
 ]

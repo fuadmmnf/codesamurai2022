@@ -46,10 +46,26 @@ for i, project in projects.iterrows():
         actual_cost=project['actual_cost'],
     ).save()
 
+
+proposals = pd.read_csv(open('api/seed/data/proposals.csv'))
+for i, proposal in proposals.iterrows():
+    Project(
+        project_id=proposal['project_id'],
+        exec=Agency.objects.get(code__exact=proposal['exec']),
+        project_name=proposal['name'],
+        location=proposal['location'],
+        proposal_date=datetime.strptime(proposal['proposal_date'], "%Y-%m-%d"),
+        latitude=proposal['latitude'],
+        longitude=proposal['longitude'],
+        cost=proposal['cost'],
+        timespan=proposal['timespan'],
+        goal=proposal['goal'],
+        is_accepted=False,
+    ).save()
+
 components = pd.read_csv(open('api/seed/data/components.csv'))
 Component.objects.all().delete()
-for i, component in components.sort_values(by='depends_on').iterrows():
-    print(component['depends_on'])
+for i, component in components.sort_values(by='depends_on', ascending=False)[::-1].iterrows():
     Component(
         component_id=component['component_id'],
         project_id=Project.objects.get(project_id__exact=component['project_id']),
@@ -60,28 +76,12 @@ for i, component in components.sort_values(by='depends_on').iterrows():
         budget_ratio=component['budget ratio'],
     ).save()
 
-proposals = pd.read_csv(open('api/seed/data/proposals.csv'))
-for i, proposal in proposals.iterrows():
-    Project(
-        project_id=proposal['project_id'],
-        exec=Agency.objects.get(code__exact=proposal['exec']),
-        project_name=proposal['project_name'],
-        location=proposal['location'],
-        proposal_date=datetime.strptime(proposal['proposal_date'], "%Y-%m-%d"),
-        total_budget=proposal['total_budget'],
-        latitude=proposal['latitude'],
-        longitude=proposal['longitude'],
-        cost=proposal['cost'],
-        timespan=proposal['timespan'],
-        goal=proposal['goal'],
-        is_accepted=False,
-    ).save()
 
 constraints = pd.read_csv(open('api/seed/data/constraints.csv'))
 Constraint.objects.all().delete()
 for i, constraint in constraints.iterrows():
     Constraint(
-        constraint_tyoe=constraint['constraint_type'],
+        constraint_type=constraint['constraint_type'],
         code=constraint['code'],
         max_limit=constraint['max_limit'],
     ).save()

@@ -108,3 +108,12 @@ def get_component_detail_or_delete_by_id(request, project_id, component_id):
             {'data': model_to_dict(Component.objects.filter(project_id=project).get(component_id__exact=component_id))})
     Component.objects.get(component_id__exact=component_id).delete()
     return JsonResponse({'data': 'successful'}, status=200)
+
+
+def login(request):
+    if request.method == 'POST':
+        user = User.objects.get(username__exact=request.POST.get('username'))
+        if user.password == hash(request.POST.get('password')):
+            return JsonResponse({'data': model_to_dict(user)})
+        else:
+            return JsonResponse({'data': 'unauthorized'}, status=401)
