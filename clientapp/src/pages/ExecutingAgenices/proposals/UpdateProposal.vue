@@ -99,16 +99,6 @@ import {ref} from "vue";
 import {api} from "boot/axios";
 
 export default {
-  // name    - TItle of the project
-  // Location - Location of the Project
-  // Latitude - Latitude of the project
-  // Longitude - Longitude of the project
-  // Exec - Executing Agency
-  // Cost - Projected Cost in crores
-  // Timespan - Timespan of the project in years
-  // Project_id - unique id of the project
-  // Goal - Objective of the project
-  // proposal_date    - When was the project proposed
   name: "ExecUpdateProposal",
   data () {
     return {
@@ -144,7 +134,7 @@ export default {
         exec: "MOEDU",
         name: this.name,
         location: this.Location,
-        start_date: null,
+        start_date: this.project.start_date,
         latitude: this.Latitude,
         longitude: this.Longitude,
         cost: this.Cost,
@@ -154,11 +144,11 @@ export default {
         goal: '',
         completion: this.project.completion,
         actual_cost: this.project.actual_cost,
-        is_accepted: false,
+        is_accepted: this.project.is_accepted,
         proposal_date: this.project.proposal_date,
-        is_deleted: false
+        is_deleted: this.project.is_deleted
       }
-      api.post('proposals',temp).then((response)=>{
+      api.put('proposals',temp).then((response)=>{
         if(response.status === 200){
           this.$router.push('/exec/proposals')
         }

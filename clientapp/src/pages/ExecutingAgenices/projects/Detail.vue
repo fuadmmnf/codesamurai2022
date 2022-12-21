@@ -13,6 +13,7 @@
         <q-tab label="Details" name="details"/>
         <q-tab label="Gantt Chart" name="gantt"/>
         <q-tab label="Update project" name="update"/>
+        <q-tab label="Components" name="components"/>
       </q-tabs>
 
       <q-separator/>
@@ -71,7 +72,6 @@
             <Gantt></Gantt>
           </div>
         </q-tab-panel>
-
         <q-tab-panel name="update">
           <div>
             <div class="q-pa-md" style="max-width: 800px; height: 100vh;">
@@ -109,6 +109,9 @@
             </div>
           </div>
         </q-tab-panel>
+        <q-tab-panel name="components">
+          <ComponentIndex :project_name="project.project_name" :project_id="project_id"></ComponentIndex>
+        </q-tab-panel>
       </q-tab-panels>
     </q-card>
   </div>
@@ -118,11 +121,12 @@
 import {ref} from 'vue'
 import Gantt from "components/gantt.vue";
 import {api} from "boot/axios";
-
+import ComponentIndex from "components/ComponentIndex.vue";
 export default {
   name: 'ExecProjectDetails',
   components: {
-    Gantt
+    Gantt,
+    ComponentIndex
   },
   data() {
     return {

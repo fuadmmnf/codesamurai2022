@@ -48,7 +48,6 @@
 import {ref} from 'vue'
 import {api} from "boot/axios";
 import {mapGetters} from "vuex";
-
 export default {
   name: 'ExecProjectIndex',
   data() {
