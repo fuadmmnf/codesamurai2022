@@ -36,6 +36,8 @@
             <q-td key="actions" :props="props" style="align-items: end">
               <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Details"
                      @click="$router.push(`/exec/projects/detail/${props.row.project_id}`)"/>
+              <q-btn label="Report" color="primary" @click="pdfConvert(props.row)"/>
+              <q-btn label="CSV" color="warning" text-color="black" @click="csvConvert(props.row)"/>
             </q-td>
           </q-tr>
         </template>
@@ -48,6 +50,9 @@
 import {ref} from 'vue'
 import {api} from "boot/axios";
 import {mapGetters} from "vuex";
+import {jsPDF} from "jspdf";
+import { parse } from 'json2csv';
+
 export default {
   name: 'ExecProjectIndex',
   data() {
@@ -77,7 +82,22 @@ export default {
       this.rows = response.data.data
     })
   },
-  methods: {},
+  methods: {
+    pdfConvert(project){
+      let doc = new jsPDF();
+      doc.text(20, 10 + (1 * 10),JSON.stringify(project, null, '\t\n'));
+
+      doc.save(`${project.project_name}.pdf`,{ autoSize: true });
+    },
+    csvConvert(project){
+      try {
+        const csv = parse(project)
+        console.log(csv);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  },
 }
 </script>
 <style lang="sass">

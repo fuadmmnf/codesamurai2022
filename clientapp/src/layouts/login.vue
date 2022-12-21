@@ -88,8 +88,14 @@ export default {
       password: '',
     }
   },
+  mounted() {
+    api.get('agencies').then((response)=>{
+      console.log(response.data)
+        this.SET_AGENCIES(response.data.data)
+    })
+  },
   methods: {
-    ...mapMutations('auth', ['SET_USER']),
+    ...mapMutations('auth', ['SET_USER','SET_AGENCIES']),
     async onLoginSubmit() {
       let temp = {
         username: this.username,

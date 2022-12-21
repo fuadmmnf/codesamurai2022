@@ -72,7 +72,6 @@
               <td class="text-left">
                 <q-btn>Delete</q-btn>
                 <q-btn @click="$router.push(`/govt/projects/update/${project.project_id}`)">Update</q-btn>
-                <q-btn>Report</q-btn>
               </td>
             </tr>
             </tbody>
@@ -96,6 +95,7 @@ import {ref} from 'vue'
 import Gantt from "components/gantt.vue";
 import {api} from "boot/axios";
 import ComponentIndex from "components/ComponentIndex.vue";
+import {jsPDF} from "jspdf";
 export default {
   name: 'ProjectDetails',
   components: {
@@ -118,7 +118,9 @@ export default {
       this.ratingModel = this.project.rating!=null ? this.project.rating : 0;
     })
   },
-  methods: {},
+  methods: {
+
+  },
 }
 </script>
 <style scoped>
