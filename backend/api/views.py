@@ -16,27 +16,26 @@ def get_all_or_save_projects(request):
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
         print(body.get('project_id'))
-        transaction = Project.objects.update if request.method == 'PUT' else Project
-        t=transaction(
-            project_id=body.get('project_id'),
-            exec=Agency.objects.get(code=body.get('exec')),
-            project_name=body.get('project_name'),
-            location=body.get('location'),
-            start_date=None if not body.get('proposal_date') else datetime.datetime.strptime(
-                body.get('start_date'), "%Y-%m-%d"),
-            latitude=body.get('latitude'),
-            longitude=body.get('longitude'),
-            cost=body.get('cost'),
-            timespan=body.get('timespan'),
-            goal=body.get('goal'),
-            completion=body.get('completion', None),
-            rating=body.get('rating', None),
-            feedback=body.get('feedback', ''),
-            actual_cost=body.get('actual_cost'),
-            is_deleted=body.get('is_deleted', False)
-        )
-        if request.method == 'POST':
-            t.save()
+        transaction = Project.objects.get(
+            project_id__exact=body.get('project_id')) if request.method == 'PUT' else Project()
+        transaction.project_id = body.get('project_id')
+        transaction.exec = Agency.objects.get(code=body.get('exec'))
+        transaction.project_name = body.get('project_name')
+        transaction.location = body.get('location')
+        transaction.start_date = None if not body.get('proposal_date') else datetime.datetime.strptime(
+            body.get('start_date'), "%Y-%m-%d")
+        transaction.latitude = body.get('latitude')
+        transaction.longitude = body.get('longitude')
+        transaction.cost = body.get('cost')
+        transaction.timespan = body.get('timespan')
+        transaction.goal = body.get('goal')
+        transaction.completion = body.get('completion', None)
+        transaction.rating = body.get('rating', None)
+        transaction.feedback = body.get('feedback', '')
+        transaction.actual_cost = body.get('actual_cost')
+        transaction.is_deleted = body.get('is_deleted', False)
+
+        transaction.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
@@ -70,24 +69,23 @@ def get_all_or_save_proposals(request):
         return JsonResponse({'data': list(Project.objects.filter(is_accepted=False).values())})
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
-        transaction = Project.objects.update if request.method == 'PUT' else Project
-        t=transaction(
-            project_id=body.get('project_id'),
-            exec=Agency.objects.get(code__exact=body.get('exec')),
-            project_name=body.get('name'),
-            location=body.get('location'),
-            latitude=body.get('latitude'),
-            longitude=body.get('longitude'),
-            cost=body.get('cost'),
-            timespan=body.get('timespan'),
-            goal=body.get('goal'),
-            completion=body.get('completion', None),
-            is_accepted=body.get('is_accepted', False),
-            proposal_date=None if not body.get('proposal_date') else datetime.datetime.strptime(
-                body.get('proposal_date'), "%Y-%m-%d"),
-        )
-        if request.method == 'POST':
-            t.save()
+        transaction = Project.objects.get(
+            project_id__exact=body.get('project_id')) if request.method == 'PUT' else Project()
+        transaction.project_id = body.get('project_id')
+        transaction.exec = Agency.objects.get(code__exact=body.get('exec'))
+        transaction.project_name = body.get('name')
+        transaction.location = body.get('location')
+        transaction.latitude = body.get('latitude')
+        transaction.longitude = body.get('longitude')
+        transaction.cost = body.get('cost')
+        transaction.timespan = body.get('timespan')
+        transaction.goal = body.get('goal')
+        transaction.completion = body.get('completion', None)
+        transaction.is_accepted = body.get('is_accepted', False)
+        transaction.proposal_date = None if not body.get('proposal_date') else datetime.datetime.strptime(
+            body.get('proposal_date'), "%Y-%m-%d")
+
+        transaction.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
@@ -107,18 +105,18 @@ def get_all_or_save_components(request, project_id):
         return JsonResponse({'data': list(Component.objects.filter(project_id=project).values())})
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
-        transaction = Component.objects.update if request.method == 'PUT' else Component
-        t=transaction(
-            component_id=body.get('component_id'),
-            project_id=project,
-            executing_agency=Agency.objects.get(code__exact=body.get('execution_agency')),
-            component_type=body.get('component_type'),
-            depends_on=None if not body.get('depends_on') else Component.objects.get(
-                component_id__exact=body.get('depends_on')),
-            budget_ratio=body.get('budget_ratio'),
-        )
-        if request.method == 'POST':
-            t.save()
+        transaction = Component.objects.get(
+            component_id__exact=body.get('component_id')) if request.method == 'PUT' else Component()
+        transaction.component_id = body.get('component_id')
+        transaction.project_id = project
+        transaction.executing_agency = Agency.objects.get(code__exact=body.get('execution_agency'))
+        transaction.component_type = body.get('component_type'),
+        transaction.depends_on = None if not body.get('depends_on') else Component.objects.get(
+            component_id__exact=body.get('depends_on'))
+        transaction.budget_ratio = body.get('budget_ratio')
+
+        transaction.save()
+
         return JsonResponse({'data': 'updated'}, status=200)
 
 
