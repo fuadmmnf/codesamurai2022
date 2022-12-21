@@ -79,7 +79,7 @@
         </q-tab-panel>
         <q-tab-panel name="gantt">
           <div style="height: 70vh">
-            <Gantt></Gantt>
+            <Gantt :project_id="project_id"></Gantt>
           </div>
         </q-tab-panel>
       </q-tab-panels>

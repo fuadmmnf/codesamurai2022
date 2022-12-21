@@ -4,9 +4,16 @@
 
 <script>
 import {gantt} from 'dhtmlx-gantt';
+import {api} from "boot/axios";
 
 export default {
   name: "Gantt",
+  props: {
+    project_id: {
+      type: String,
+      required: true
+    },
+  },
   data () {
     return {
       tasks: {
@@ -21,8 +28,10 @@ export default {
     }
   },
   mounted: function () {
+    api.get(`projects/${this.project_id}/components`).then((response)=>{
+      console.log(response.data.data)
+    })
     gantt.config.date_format = "%Y-%m-%d";
-
     gantt.init(this.$refs.ganttContainer);
     gantt.parse(this.tasks);
   }

@@ -12,6 +12,7 @@
       >
         <q-tab label="Details" name="details"/>
         <q-tab label="Gantt Chart" name="gantt"/>
+        <q-tab label="Components" name="components"/>
       </q-tabs>
 
       <q-separator/>
@@ -70,8 +71,11 @@
         </q-tab-panel>
         <q-tab-panel name="gantt">
           <div style="height: 70vh">
-            <Gantt></Gantt>
+            <Gantt :project_id="proposal_id"></Gantt>
           </div>
+        </q-tab-panel>
+        <q-tab-panel name="components">
+          <ProposalComponentIndex :project_name="proposal.project_name" :project_id="proposal.project_id"></ProposalComponentIndex>
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -81,10 +85,12 @@
 <script>
 import Gantt from "components/gantt.vue";
 import {api} from "boot/axios";
+import ProposalComponentIndex from "components/ProposalComponentIndex.vue";
 export default {
   name: "ProposalDetails",
   components: {
-    Gantt
+    Gantt,
+    ProposalComponentIndex
   },
   data(){
     return{

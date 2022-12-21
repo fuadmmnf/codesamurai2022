@@ -39,6 +39,7 @@ const routes = [
       { path: 'proposals/detail/:project_id', component: () => import('pages/ExecutingAgenices/proposals/Detail.vue') },
       { path: 'proposals/add', component: () => import('pages/ExecutingAgenices/proposals/AddProposal.vue') },
       { path: 'proposals/update/:project_id', component: () => import('pages/ExecutingAgenices/proposals/UpdateProposal.vue') },
+      { path: 'proposals/components/:project_id', component: () => import('pages/ExecutingAgenices/proposals/AddPoposalComponents.vue') },
     ]
   }
   // Always leave this as last one,
