@@ -77,13 +77,13 @@
             <div class="q-pa-md" style="max-width: 800px; height: 100vh;">
               <q-form
                 @submit="onSubmit"
-                @reset="onReset"
                 class="q-gutter-md"
                 style="margin-top: 10px; padding-right: 10px; padding-left: 10px"
               >
                 <q-input
                   filled
                   v-model="actual_cost"
+                  step="0.01"
                   label="Actual Project Cost"
                   hint="Enter actual cost"
                   type="number"
@@ -94,6 +94,7 @@
                   class="q-input-padding"
                   filled
                   v-model="timespan"
+                  step="0.01"
                   label="Timespan"
                   type="number"
                   hint="Enter project Longitude"
@@ -142,7 +143,31 @@ export default {
     })
   },
   methods: {
-    onSubmit(){},
+    onSubmit(){
+      let temp={
+        project_id: this.project.project_id,
+        exec: "MOEDU",
+        project_name: this.project.project_name,
+        location: this.project.location,
+        start_date: this.project.start_date,
+        latitude: this.project.latitude,
+        longitude: this.project.longitude,
+        cost: this.project.cost,
+        timespan: this.timespan,
+        feedback: this.project.feedback,
+        rating: this.project.rating,
+        goal: this.project.goal,
+        completion: this.project.completion,
+        actual_cost: this.actual_cost,
+        is_accepted: true,
+        is_deleted: false
+      }
+      api.put('projects',temp).then((response)=>{
+        if(response.status === 200){
+          this.$router.push('/govt/projects')
+        }
+      })
+    },
     onReset(){}
   },
 }

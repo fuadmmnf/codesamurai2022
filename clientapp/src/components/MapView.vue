@@ -1,13 +1,14 @@
 <template>
   <l-map style="height: 300px" :zoom="zoom" :center="center">
-    <ProjectDetailsDialog/>
+<!--    <ProjectDetailsDialog/>-->
 
     <l-tile-layer :url="url"></l-tile-layer>
 
     <div v-for="projectInfo in projectsInfo" :key="projectInfo.id">
-      <div v-for="(coord,idx) in parseCoords(projectInfo)" :key="`${projectInfo.id}_${idx}`">
-        <l-marker :lat-lng="coord" @click="showDescription(projectInfo)"></l-marker>
-      </div>
+      <!--      <div v-for="(coord,idx) in parseCoords(projectInfo)" :key="`${projectInfo.id}_${idx}`">-->
+      <l-marker :lat-lng="[projectInfo.latitude, projectInfo.longitude]"
+                @click="showDescription(projectInfo)"></l-marker>
+      <!--      </div>-->
 
     </div>
     <!--      <l-control-zoom position="bottomright" />-->
@@ -19,7 +20,7 @@
           <q-bar>
             <div class="text-subtitle1  text-center">Filter by Category/ Daterange</div>
 
-            <q-space />
+            <q-space/>
 
             <q-btn dense flat icon="close" v-close-popup>
               <q-tooltip>Close</q-tooltip>
@@ -28,8 +29,8 @@
 
           <q-card-section class="items-center no-wrap">
             <div class="q-mb-md">
-              <q-select outlined v-model="filter.category" :options="projectCategories"
-                        label="Select Project Category"/>
+              <q-select outlined v-model="filter.exec" :options="projectAgencies"
+                        label="Select Project Agency"/>
 
             </div>
 
@@ -76,13 +77,14 @@
 </template>
 
 <script>
-import projectsJson from 'src/assets/projects'
+// import projectsJson from 'src/assets/projects'
 import {LMap, LTileLayer, LMarker, LControl} from "vue2-leaflet";
 import {date} from 'quasar'
 
 import "leaflet/dist/leaflet.css";
 import {Icon} from "leaflet";
-import ProjectDetailsDialog from "components/ProjectDetailsDialog";
+// import ProjectDetailsDialog from "components/ProjectDetailsDialog";
+import {api} from "boot/axios";
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -94,7 +96,7 @@ Icon.Default.mergeOptions({
 export default {
   name: "MapView",
   components: {
-    ProjectDetailsDialog,
+    // ProjectDetailsDialog,
     LMap,
     LTileLayer,
     LMarker,
@@ -104,20 +106,26 @@ export default {
     return {
       showFilterDialog: false,
       filter: {
-        category: null,
+        exec: null,
         startDate: null,
         endDate: null,
       },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         "",
-      zoom: 15,
-      center: [23.732590, 90.395632],
-      projectsInfo: projectsJson(),
-      markerLatLng: [23.732590, 90.395632]
+      zoom: 10,
+      center: [23.8159, 90.5400],
+      allProjects: [],
+      projectsInfo: [],
     };
   },
   methods: {
+    getProjects() {
+      api.get('projects').then((response) => {
+        this.projectsInfo = response.data.data
+        this.allProjects = response.data.data
+      })
+    },
     parseCoords(project) {
       let coords = []
       const points = project.location_coordinates.replace(/[()]/g, '').replace(/\s/g, '').split(",")
@@ -128,48 +136,38 @@ export default {
       return coords
     },
     showDescription(projectInfo) {
-      this.$root.$emit('marker-click', projectInfo)
+      this.$router.push(`/client/projects/detail/${projectInfo.project_id}`)
     },
     resetFiltering() {
       this.filter = {
-        category: null,
+        exec: null,
         startDate: null,
         endDate: null,
       }
 
     },
     applyFiltering() {
-      this.projectsInfo = projectsJson()
-      if (this.filter.category !== null) {
-        this.projectsInfo = this.projectsInfo.filter(project => project.category === this.filter.category)
+      this.projectsInfo = this.allProjects
+      if (this.filter.exec !== null) {
+        this.projectsInfo = this.projectsInfo.filter(project => project.exec === this.filter.exec)
       }
 
       if (this.filter.startDate !== null) {
-        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(new Date(project.project_start_time), this.filter.startDate, 'days') >= 0)
+        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(new Date(project.start_date), this.filter.startDate, 'days') >= 0)
       }
-      if (this.filter.endDate !== null) {
-        this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(this.filter.endDate, new Date(project.project_completion_time), 'days') >= 0)
-      }
+      // if (this.filter.endDate !== null) {
+      //   this.projectsInfo = this.projectsInfo.filter(project => date.getDateDiff(this.filter.est_completion_date, new Date(project.project_completion_time), 'days') >= 0)
+      // }
     }
   },
   computed: {
-    // a computed getter
-    projectOffices() {
-      // `this` points to the component instance
-      let coords = []
-      for (const project of this.projectsInfo) {
-        const points = project.location_coordinates.replace(/[()]/g, '').replace(/\s/g, '').split(",")
-        console.log(points);
-        for (let i = 0; i < points.length; i = i + 2) {
-          coords.push([parseFloat(points[i]), parseFloat(points[i + 1])])
-        }
-      }
-      return coords
-    },
-    projectCategories() {
-      return [...new Set(projectsJson().map(project => project.category))]
+    projectAgencies() {
+      return [...new Set(this.allProjects.map(project => project.exec))]
     }
-  }
+  },
+  mounted() {
+    this.getProjects()
+  },
 };
 </script>
 

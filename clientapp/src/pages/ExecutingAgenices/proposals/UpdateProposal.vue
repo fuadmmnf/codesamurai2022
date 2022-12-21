@@ -36,6 +36,7 @@
             <q-input
               filled
               v-model="Latitude"
+              step="0.01"
               label="Project Latitude"
               hint="Enter project latitude"
               type="number"
@@ -48,6 +49,7 @@
               class="q-input-padding"
               filled
               v-model="Longitude"
+              step="0.01"
               label="Longitude"
               type="number"
               hint="Enter project Longitude"
@@ -61,6 +63,7 @@
             <q-input
               filled
               v-model="Cost"
+              step="0.01"
               label="Project Cost"
               hint="Enter project cost"
               type="number"
@@ -68,23 +71,14 @@
               :rules="[ val => val && val.length > 0 || 'Please enter something']"
             />
           </div>
-          <div class="col-lg-4 col-md-4" style="padding-left: 10px;">
+          <div class="col-lg-6 col-md-6" style="padding-left: 10px;">
             <q-input
               filled
               v-model="Timespan"
+              step="0.01"
               label="Project Timespan"
               hint="Enter project timespan"
               type="number"
-              lazy-rules
-              :rules="[ val => val && val.length > 0 || 'Please enter something']"
-            />
-          </div>
-          <div class="col-lg-4 col-md-4" style="padding-left: 10px;">
-            <q-input
-              filled
-              v-model="proposal_date"
-              hint="Proposal Date"
-              type="Date"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Please enter something']"
             />
@@ -144,7 +138,32 @@ export default {
     })
   },
   methods: {
-    onSubmit(){},
+    onSubmit(){
+      let temp ={
+        project_id: this.project.project_id,
+        exec: "MOEDU",
+        name: this.name,
+        location: this.Location,
+        start_date: null,
+        latitude: this.Latitude,
+        longitude: this.Longitude,
+        cost: this.Cost,
+        timespan: this.Timespan,
+        feedback: "",
+        rating: null,
+        goal: '',
+        completion: this.project.completion,
+        actual_cost: this.project.actual_cost,
+        is_accepted: false,
+        proposal_date: this.project.proposal_date,
+        is_deleted: false
+      }
+      api.post('proposals',temp).then((response)=>{
+        if(response.status === 200){
+          this.$router.push('/exec/proposals')
+        }
+      })
+    },
     onReset(){},
   }
 }

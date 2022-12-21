@@ -14,4 +14,5 @@ urlpatterns = [
     path('login', views.login),
     path('agencies', views.get_all_agencies),
     path('constraints', views.get_all_contraints),
+    path('estimate_timeline', views.calculate_estimate_timeline)
 ]

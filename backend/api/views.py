@@ -5,6 +5,7 @@ import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.http import QueryDict
 import json
+from api.dyanamic_reporter.observer import resync_db
 import bcrypt
 
 
@@ -15,7 +16,8 @@ def get_all_or_save_projects(request):
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
         print(body.get('project_id'))
-        Project.objects.update_or_create(
+        transaction = Project.objects.update if request.method == 'PUT' else Project
+        t=transaction(
             project_id=body.get('project_id'),
             exec=Agency.objects.get(code=body.get('exec')),
             project_name=body.get('project_name'),
@@ -33,6 +35,8 @@ def get_all_or_save_projects(request):
             actual_cost=body.get('actual_cost'),
             is_deleted=body.get('is_deleted', False)
         )
+        if request.method == 'POST':
+            t.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
@@ -66,7 +70,8 @@ def get_all_or_save_proposals(request):
         return JsonResponse({'data': list(Project.objects.filter(is_accepted=False).values())})
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
-        Project.objects.update_or_create(
+        transaction = Project.objects.update if request.method == 'PUT' else Project
+        t=transaction(
             project_id=body.get('project_id'),
             exec=Agency.objects.get(code__exact=body.get('exec')),
             project_name=body.get('name'),
@@ -81,6 +86,8 @@ def get_all_or_save_proposals(request):
             proposal_date=None if not body.get('proposal_date') else datetime.datetime.strptime(
                 body.get('proposal_date'), "%Y-%m-%d"),
         )
+        if request.method == 'POST':
+            t.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
@@ -100,7 +107,8 @@ def get_all_or_save_components(request, project_id):
         return JsonResponse({'data': list(Component.objects.filter(project_id=project).values())})
     if request.method in ['POST', 'PUT']:
         body = json.loads(request.body)
-        Component.objects.update_or_create(
+        transaction = Component.objects.update if request.method == 'PUT' else Component
+        t=transaction(
             component_id=body.get('component_id'),
             project_id=project,
             executing_agency=Agency.objects.get(code__exact=body.get('execution_agency')),
@@ -109,6 +117,8 @@ def get_all_or_save_components(request, project_id):
                 component_id__exact=body.get('depends_on')),
             budget_ratio=body.get('budget_ratio'),
         )
+        if request.method == 'POST':
+            t.save()
         return JsonResponse({'data': 'updated'}, status=200)
 
 
@@ -121,6 +131,7 @@ def get_component_detail_or_delete_by_id(request, project_id, component_id):
             {'data': model_to_dict(Component.objects.filter(project_id=project).get(component_id__exact=component_id))})
     Component.objects.get(component_id__exact=component_id).delete()
     return JsonResponse({'data': 'successful'}, status=200)
+
 
 @csrf_exempt
 def login(request):
@@ -138,5 +149,11 @@ def login(request):
 def get_all_agencies(request):
     return JsonResponse({'data': list(Agency.objects.all().values())})
 
+
 def get_all_contraints(request):
     return JsonResponse({'data': list(Constraint.objects.all().values())})
+
+
+def calculate_estimate_timeline(request):
+    resync_db()
+    return JsonResponse({'data': 'resync complete'})

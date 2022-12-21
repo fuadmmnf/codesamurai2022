@@ -149,7 +149,7 @@ export default {
         goal: '',
         completion: 0.0,
         actual_cost: 0.0,
-        is_accepted: true,
+        is_accepted: false,
         proposal_date: new Date(this.proposal_date).toISOString().split('T')[0],
         is_deleted: false
       }
