@@ -22,8 +22,7 @@ def get_all_or_save_projects(request):
         transaction.exec = Agency.objects.get(code=body.get('exec'))
         transaction.project_name = body.get('project_name')
         transaction.location = body.get('location')
-        transaction.start_date = None if not body.get('proposal_date') else datetime.datetime.strptime(
-            body.get('start_date'), "%Y-%m-%d")
+        transaction.start_date = datetime.datetime.strptime(body.get('start_date'), "%Y-%m-%d")
         transaction.latitude = body.get('latitude')
         transaction.longitude = body.get('longitude')
         transaction.cost = body.get('cost')
