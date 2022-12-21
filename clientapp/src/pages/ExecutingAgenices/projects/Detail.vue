@@ -93,11 +93,11 @@
                 <q-input
                   class="q-input-padding"
                   filled
-                  v-model="timespan"
+                  v-model="completion"
                   step="0.01"
-                  label="Timespan"
+                  label="Completion"
                   type="number"
-                  hint="Enter project Longitude"
+                  hint="Enter completion"
                   lazy-rules
                   :rules="[ val => val && val.length > 0 || 'Please enter something']"
                 />
@@ -133,7 +133,7 @@ export default {
       filter: ref(''),
       tab: 'details',
       actual_cost: null,
-      timespan: null,
+      completion: null,
       project_id: '',
       project: null,
     }
@@ -143,7 +143,7 @@ export default {
     api.get(`projects/${this.project_id}`).then((response) => {
       this.project = response.data.data
       this.actual_cost = this.project.actual_cost
-      this.timespan = this.project.timespan
+      this.completion = this.project.completion
     })
   },
   methods: {
@@ -157,18 +157,18 @@ export default {
         latitude: this.project.latitude,
         longitude: this.project.longitude,
         cost: this.project.cost,
-        timespan: this.timespan,
+        timespan: this.project.timespan,
         feedback: this.project.feedback,
         rating: this.project.rating,
         goal: this.project.goal,
-        completion: this.project.completion,
+        completion: this.completion,
         actual_cost: this.actual_cost,
         is_accepted: true,
         is_deleted: false
       }
       api.put('projects',temp).then((response)=>{
         if(response.status === 200){
-          this.$router.push('/govt/projects')
+          this.$router.push('/exec/projects')
         }
       })
     },

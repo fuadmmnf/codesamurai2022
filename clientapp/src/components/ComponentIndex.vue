@@ -36,7 +36,7 @@
             <q-td key="start_date" :props="props">
               {{ props.row.start_date }}
             </q-td>
-            <q-td key="actions" :props="props" style="align-items: end">
+            <q-td key="actions" :props="props" style="align-items: end" v-if="getUser.role.code !== 'EXEC'">
               <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Update"
                      @click="$router.push(`/govt/projects/detail/${props.row.project_id}`)"/>
             </q-td>
