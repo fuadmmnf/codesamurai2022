@@ -16,6 +16,7 @@
     "axios": "^0.21.4",
     "core-js": "^3.6.5",
     "dhtmlx-gantt": "^7.1.13",
+    "jspdf": "^2.5.1",
     "leaflet": "^1.9.3",
     "quasar": "^1.0.0",
     "vue2-leaflet": "^2.7.1"

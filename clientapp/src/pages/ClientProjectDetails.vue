@@ -73,12 +73,11 @@
 
               <q-form
                 @submit="onsubmit"
-                @reset="onreset"
                 class="q-gutter-md"
               >
                 <q-input
                   filled
-                  v-model="name"
+                  v-model="feedback"
                   label="Feedback"
                   hint="Please, write Your feedback"
                   lazy-rules
@@ -96,7 +95,6 @@
 
                 <div class="flex flex-center">
                   <q-btn label="Submit" type="submit" color="primary"/>
-                  <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm"/>
                 </div>
               </q-form>
 
@@ -111,6 +109,7 @@
 <script>
 import Gantt from "components/gantt.vue";
 import {api} from "boot/axios";
+import { jsPDF } from "jspdf";
 
 export default {
   name: "ClientProjectDetails",
@@ -131,16 +130,38 @@ export default {
     api.get(`projects/${this.project_id}`).then((response) => {
       this.project = response.data.data
       this.ratingModel = this.project.rating!=null ? this.project.rating : 0;
+      this.feedback = this.project.feedback
+      this.ratingModel = this.project.rating
       console.log(this.project)
     })
   },
   methods: {
     onsubmit() {
-
+      let temp={
+        project_id: this.project.project_id,
+        exec: "MOEDU",
+        project_name: this.project.project_name,
+        location: this.project.location,
+        start_date: this.project.start_date,
+        latitude: this.project.latitude,
+        longitude: this.project.longitude,
+        cost: this.project.cost,
+        timespan: this.project.timespan,
+        feedback: this.feedback,
+        rating: this.ratingModel,
+        goal: this.project.goal,
+        completion: this.project.completion,
+        actual_cost: this.project.actual_cost,
+        is_accepted: true,
+        is_deleted: false
+      }
+      api.put('projects',temp).then((response)=>{
+        if(response.status === 200){
+          this.$router.push('/client/projects')
+        }
+      })
     },
-    onreset() {
 
-    }
   }
 }
 </script>

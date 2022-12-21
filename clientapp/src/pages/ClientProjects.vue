@@ -36,6 +36,7 @@
             <q-td key="actions" :props="props" style="align-items: end">
               <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Details"
                      @click="$router.push(`/client/projects/detail/${props.row.project_id}`)"/>
+              <q-btn label="Report" color="primary" @click="pdfConvert(props.row)"/>
             </q-td>
           </q-tr>
         </template>
@@ -47,6 +48,7 @@
 <script>
 import {ref} from 'vue'
 import {api} from "boot/axios"
+import {jsPDF} from "jspdf";
 
 export default {
   name: 'ClientProjects',
@@ -73,7 +75,14 @@ export default {
       this.rows = response.data.data
     })
   },
-  methods: {},
+  methods: {
+    pdfConvert(project){
+      let doc = new jsPDF();
+      doc.text(20, 10 + (1 * 10),JSON.stringify(project, null, '\t\n'));
+
+      doc.save(`${project.project_name}.pdf`,{ autoSize: true });
+    }
+  },
 }
 </script>
 <style lang="sass">
