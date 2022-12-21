@@ -52,7 +52,7 @@
               <th class="text-left ">Actions</th>
               <td class="text-left">
                 <q-btn @click="$router.push('/govt/projects/update')">Approve</q-btn>
-                <q-btn @click="$router.push('/govt/projects/update')">Reject</q-btn>
+                <q-btn @click="onReject">Reject</q-btn>
               </td>
             </tr>
             </tbody>
@@ -89,6 +89,16 @@ export default {
       this.proposal = response.data.data
     })
   },
+  methods:{
+    onApproval(){
+
+    },
+    onReject(){
+      api.delete(`proposals/${this.proposal_id}`).then((response) => {
+        this.$router.push('/govt/proposals')
+      })
+    }
+  }
 }
 </script>
 
