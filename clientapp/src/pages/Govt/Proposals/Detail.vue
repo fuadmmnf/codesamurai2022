@@ -49,9 +49,19 @@
               <td class="text-left">{{ proposal.proposal_date}}</td>
             </tr>
             <tr>
+              <th class="text-left ">Rating</th>
+              <td class="text-left"><q-rating hint=""
+                                              size="xl"
+                                              color="negative"
+                                              v-model="ratingModel" :max="5"
+                                              icon="star_border"
+                                              icon-selected="star"
+                                              no-dimming/></td>
+            </tr>
+            <tr>
               <th class="text-left ">Actions</th>
               <td class="text-left">
-                <q-btn @click="$router.push('/govt/projects/update')">Approve</q-btn>
+                <q-btn @click="onApproval">Approve</q-btn>
                 <q-btn @click="onReject">Reject</q-btn>
               </td>
             </tr>
@@ -81,17 +91,41 @@ export default {
       tab: 'details',
       proposal_id: '',
       proposal: null,
+      ratingModel: null
     }
   },
   mounted() {
     this.proposal_id = this.$route.params.project_id;
     api.get(`proposals/${this.proposal_id}`).then((response) => {
       this.proposal = response.data.data
+      this.ratingModel = this.proposal.rating!=null ? this.proposal.rating : 0;
     })
   },
   methods:{
     onApproval(){
-
+      let temp={
+        project_id: this.proposal.project_id,
+        exec: "MOEDU",
+        name: this.proposal.project_name,
+        location: this.proposal.location,
+        start_date: this.proposal.start_date,
+        latitude: this.proposal.latitude,
+        longitude: this.proposal.longitude,
+        cost: this.proposal.cost,
+        timespan: this.proposal.timespan,
+        feedback: this.proposal.feedback,
+        rating: this.proposal.rating,
+        goal: this.proposal.goal,
+        completion: this.proposal.completion,
+        actual_cost: this.proposal.actual_cost,
+        is_accepted: true,
+        is_deleted: false
+      }
+      api.put('proposals',temp).then((response)=>{
+        if(response.status === 200){
+          this.$router.push('/govt/proposals')
+        }
+      })
     },
     onReject(){
       api.delete(`proposals/${this.proposal_id}`).then((response) => {

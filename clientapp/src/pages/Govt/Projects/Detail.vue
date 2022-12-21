@@ -58,6 +58,16 @@
               <td class="text-left">{{ project.completion }}</td>
             </tr>
             <tr>
+              <th class="text-left ">Rating</th>
+              <td class="text-left"><q-rating hint=""
+                                              size="xl"
+                                              color="negative"
+                                              v-model="ratingModel" :max="5"
+                                              icon="star_border"
+                                              icon-selected="star"
+                                              no-dimming/></td>
+            </tr>
+            <tr>
               <th class="text-left ">Actions</th>
               <td class="text-left">
                 <q-btn>Delete</q-btn>
@@ -97,6 +107,7 @@ export default {
       filter: ref(''),
       tab: 'details',
       project_id: '',
+      ratingModel: null,
       project: null,
     }
   },
