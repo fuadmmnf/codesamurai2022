@@ -22,6 +22,7 @@ const routes = [
       { path: 'projects', component: () => import('pages/Govt/Projects/index.vue') },
       { path: 'projects/add', component: () => import('pages/Govt/Projects/AddProjects.vue') },
       { path: 'projects/detail/:project_id', component: () => import('pages/Govt/Projects/Detail.vue') },
+      { path: 'projects/components/:project_id', component: () => import('pages/Govt/Projects/AddComponents.vue') },
       { path: 'projects/update/:project_id', component: () => import('pages/Govt/Projects/Update.vue') },
       { path: 'Proposals', component: () => import('pages/Govt/Proposals/index.vue') },
       { path: 'Proposals/detail/:project_id', component: () => import('pages/Govt/Proposals/Detail.vue') },

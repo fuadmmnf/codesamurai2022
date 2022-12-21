@@ -15,9 +15,9 @@
               <q-icon name="search"/>
             </template>
           </q-input>
-          <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="+ Add Project"
+          <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="+ Add Components"
                  v-if="getUser.role.code !== 'EXEC'"
-                 @click="$router.push('/govt/projects/add')"/>
+                 @click="$router.push(`/govt/projects/components/${project_id}`)"/>
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
@@ -36,10 +36,10 @@
             <q-td key="start_date" :props="props">
               {{ props.row.start_date }}
             </q-td>
-            <q-td key="actions" :props="props" style="align-items: end" v-if="getUser.role.code !== 'EXEC'">
-              <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Update"
-                     @click="$router.push(`/govt/projects/detail/${props.row.project_id}`)"/>
-            </q-td>
+<!--            <q-td key="actions" :props="props" style="align-items: end" v-if="getUser.role.code !== 'EXEC'">-->
+<!--              <q-btn style="margin-left: 10px;" text-color="white" color="brown-5" label="Update"-->
+<!--                     @click="$router.push(`/govt/projects/detail/${props.row.project_id}`)"/>-->
+<!--            </q-td>-->
           </q-tr>
         </template>
       </q-table>
@@ -80,7 +80,7 @@ export default {
         {name: 'component_type', align: 'center', label: 'Component type', field: 'component_type', sortable: true},
         {name: 'est_completion_date', label: 'Estimated completion date', field: 'est_completion_date', sortable: true},
         {name: 'est_start_date', label: 'Estimated Start Date', field: 'est_start_date', sortable: true},
-        {name: 'actions', label: 'Actions', field: 'actions', sortable: true}
+        // {name: 'actions', label: 'Actions', field: 'actions', sortable: true}
       ],
       rows: null,
     }

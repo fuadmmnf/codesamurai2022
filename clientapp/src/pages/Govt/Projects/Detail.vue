@@ -12,6 +12,7 @@
       >
         <q-tab label="Details" name="details"/>
         <q-tab label="Gantt Chart" name="gantt"/>
+        <q-tab label="Components" name="components"/>
       </q-tabs>
 
       <q-separator/>
@@ -73,6 +74,9 @@
           </div>
         </q-tab-panel>
       </q-tab-panels>
+      <q-tab-panel name="components">
+        <ComponentIndex :project_name="project.project_name" :project_id="project_id"></ComponentIndex>
+      </q-tab-panel>
     </q-card>
   </div>
 </template>
@@ -81,11 +85,12 @@
 import {ref} from 'vue'
 import Gantt from "components/gantt.vue";
 import {api} from "boot/axios";
-
+import ComponentIndex from "components/ComponentIndex.vue";
 export default {
   name: 'ProjectDetails',
   components: {
-    Gantt
+    Gantt,
+    ComponentIndex
   },
   data() {
     return {
